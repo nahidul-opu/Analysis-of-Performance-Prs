@@ -83,8 +83,8 @@ base_text = ", ".join(keywords)
 prompt = [
     {
         "role": "system",
-        "content": "You are text classification agent. Analyze the given text and determine if it talks about software performane. Answer 'performance' or 'non-performance' accordingly.  Performance related text may contain keywords such as: "
-        + ", ".join(keywords),
+        "content": "You are a text-classification agent. Analyze the given text and determine whether it discusses software performance. Answer 'performance' or 'non-performance' accordingly. Performance-related text may contain keywords such as "
+        + ", ".join(keywords) + ", or any other terms referring to how efficiently software runs.",
     }
 ]
 classifier = LLMClassifier(prompt)

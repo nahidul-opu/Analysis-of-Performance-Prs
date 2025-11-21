@@ -59,14 +59,25 @@ class LLMClassifier(TextClassifier):
         self.prediction = "None"
         self.pos_word = pos_word
 
+        max_mem = {i: "78GiB" for i in range(torch.cuda.device_count())}
+        max_mem[0] = "65GiB"
+
         self.pipe = pipeline(
             "text-generation",
             model=self.model_name,
+            device_map="balanced_low_0", 
+            model_kwargs = {
+                "max_memory":max_mem,
+                "offload_folder": "./offload"
+            },
         )
 
         self.pipe.tokenizer.padding_side = "left"
         if self.pipe.tokenizer.pad_token is None:
             self.pipe.tokenizer.pad_token = self.pipe.tokenizer.eos_token
+
+        self.pipe.model.eval()
+        torch.set_grad_enabled(False)
         
     def extract_result_for_gptoss(self, text):
         first_word = text
@@ -78,14 +89,15 @@ class LLMClassifier(TextClassifier):
             return None
     
     def classify(self, text):
-        prompt = self.prompt_template
+        prompt = self.prompt_template.copy()
         prompt.append({
             "role": "user",
             "content": text
         })
         
-        output = self.pipe(prompt, max_new_tokens=100000, do_sample=False)
-        self.prediction = output[0]["generated_text"][-1]["content"]
+        with torch.inference_mode():
+            output = self.pipe(prompt, max_new_tokens=100000, do_sample=False)
+            self.prediction = output[0]["generated_text"][-1]["content"]
 
         result = False
         if "gpt-oss" in self.llm_model:

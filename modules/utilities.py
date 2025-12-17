@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib as mpl
 
 from modules.constants import *
 
@@ -18,9 +17,8 @@ COLOR_MAP = {
 
 
 # –– Nature-ready styling
-mpl.rcParams.update(
-    {
-        "font.family": "serif",
+mpl_params = {
+        "font.family": "DeJavu Serif",
         "font.serif": ["Times New Roman", "Times"],
         "mathtext.fontset": "stix",
         "axes.linewidth": 1.0,
@@ -34,7 +32,6 @@ mpl.rcParams.update(
         "legend.title_fontsize": 14,
         "figure.dpi": 300,
     }
-)
 
 def read_aidev(name):
     return pd.read_parquet(AIDEV_DATA_DIR + name + ".parquet")

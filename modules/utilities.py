@@ -52,11 +52,11 @@ topic_map = {
     "topic_10": "Constant Folding",
     "topic_11": "CLI Tool",
     "topic_12": "Frontend Page Loading",
-    "topic_13": "Evaluation Tooling",
-    "topic_14": "List Handling in Compiler",
+    "topic_13": "Smoke Tests",
+    "topic_14": "Collection Reuse",
     "topic_15": "VM",
     "topic_16": "Token Usage",
-    "topic_17": "Build Optimization",
+    "topic_17": "Streamline Build",
     "topic_18": "Compiler Runtime",
     "topic_19": "Caching for APIs",
     "topic_20": "Compiler Output",
@@ -82,7 +82,7 @@ topic_map = {
     "topic_40": "Timeout",
     "topic_41": "UI Improvement",
     "topic_42": "VM Register",
-    "topic_43": ".NET Micro-optimizations",
+    "topic_43": "Hash Generation",
     "topic_44": "GPU Usage",
     "topic_45": "Caching Logic",
     "topic_46": "Scheduling",
@@ -98,7 +98,8 @@ category_map = {
         "topic_0",   # CI/CD Workflow
         "topic_7",   # Dependency Management
         "topic_11",  # CLI tool
-        "topic_17",  # Build Performance
+        "topic_13",  # Smoke Tests
+        "topic_17",  # Streamline Build
         "topic_38",  # .NET build
         "topic_40",  # Test Timeout
     ],
@@ -106,7 +107,7 @@ category_map = {
     "Low-level": [
         "topic_1",   # Transpiler Benchmarking
         "topic_10",  # Constant Folding
-        "topic_14",  # Compiler collection handling
+        "topic_14",  # Collection Reuse
         "topic_15",  # VM Constant Folding
         "topic_18",  # Compiler Runtime
         "topic_20",  # Compiler improvement for Output
@@ -139,7 +140,7 @@ category_map = {
         "topic_23",  # Large Workload
         "topic_33",  # Hashing
         "topic_36",  # N+1 Query Optimization
-        "topic_43",  # .NET micro-optimizations
+        "topic_43",  # Hash Generation
         "topic_46",  # Scheduling
         "topic_50",  # Redundant Function Call
     ],
@@ -160,7 +161,6 @@ category_map = {
 
     "Monitoring and Evaluation": [
         "topic_8",   # Performance Benchmarking
-        "topic_13",  # Evaluation tooling
         "topic_27",  # Benchmark Update
         "topic_34",  # Telemetry and tracing
     ],

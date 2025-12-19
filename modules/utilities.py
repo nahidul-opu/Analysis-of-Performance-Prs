@@ -37,57 +37,142 @@ def read_aidev(name):
     return pd.read_parquet(AIDEV_DATA_DIR + name + ".parquet")
 
 
+
 topic_map = {
-    "topic_0": "",
-    "topic_1": "",
-    "topic_2": "",
-    "topic_3": "",
-    "topic_4": "",
-    "topic_5": "",
-    "topic_6": "",
-    "topic_7": "",
-    "topic_8": "",
-    "topic_9": "",
-    "topic_10": "",
-    "topic_11": "",
-    "topic_12": "",
-    "topic_13": "",
-    "topic_14": "",
-    "topic_15": "",
-    "topic_16": "",
-    "topic_17": "",
-    "topic_18": "",
-    "topic_19": "",
-    "topic_20": "",
-    "topic_21": "",
-    "topic_22": "",
-    "topic_23": "",
-    "topic_24": "",
-    "topic_25": "",
-    "topic_26": "",
-    "topic_27": "",
-    "topic_28": "",
-    "topic_29": "",
-    "topic_30": "",
-    "topic_31": "",
-    "topic_32": "",
-    "topic_33": "",
-    "topic_34": "",
-    "topic_35": "",
-    "topic_36": "",
-    "topic_37": "",
-    "topic_38": "",
-    "topic_39": "",
-    "topic_40": "",
-    "topic_41": "",
-    "topic_42": "",
-    "topic_43": "",
-    "topic_44": "",
-    "topic_45": "",
-    "topic_46": "",
-    "topic_47": "",
-    "topic_48": "",
-    "topic_49": "",
-    "topic_50": "",
-    "topic_51": ""
+    "topic_0":  "CI/CD",
+    "topic_1":  "Transpiler Benchmarking",
+    "topic_2":  "Rendering and Data Loading",
+    "topic_3":  "Timeout and Concurrency",
+    "topic_4":  "Sequence Data Processing",
+    "topic_5":  "Join Query",
+    "topic_6":  "Network Call Optimization",
+    "topic_7":  "Dependency Management",
+    "topic_8":  "Performance Benchmarking",
+    "topic_9":  "Memory Leak",
+    "topic_10": "Constant Folding",
+    "topic_11": "CLI Tool",
+    "topic_12": "Frontend Page Loading",
+    "topic_13": "Evaluation Tooling",
+    "topic_14": "List Handling in Compiler",
+    "topic_15": "VM",
+    "topic_16": "Token Usage",
+    "topic_17": "Build Optimization",
+    "topic_18": "Compiler Runtime",
+    "topic_19": "Caching for APIs",
+    "topic_20": "Compiler Output",
+    "topic_21": "Group by Query in Compiler ",
+    "topic_22": "Caching Control",
+    "topic_23": "Large Workload Performance",
+    "topic_24": "Bundle Size",
+    "topic_25": "Builtin Optimization in Compiler  ",
+    "topic_26": "SIMD Optimization",
+    "topic_27": "Benchmark Update",
+    "topic_28": "Debouncing",
+    "topic_29": "Query",
+    "topic_30": "File and Data Handling",
+    "topic_31": "HTTP",
+    "topic_32": "Report Generation Process",
+    "topic_33": "Collection and Hashing",
+    "topic_34": "Telemetry and Tracing",
+    "topic_35": "Offline Asset Caching",
+    "topic_36": "N+1 Query Optimization",
+    "topic_37": "Cache Constraints",
+    "topic_38": ".NET Build",
+    "topic_39": "Transpiler Functionality",
+    "topic_40": "Timeout",
+    "topic_41": "UI Improvement",
+    "topic_42": "VM Register",
+    "topic_43": ".NET Micro-optimizations",
+    "topic_44": "GPU Usage",
+    "topic_45": "Caching Logic",
+    "topic_46": "Scheduling",
+    "topic_47": "Bytecode",
+    "topic_48": "Chat System",
+    "topic_49": "Backend Query",
+    "topic_50": "Redundant Processing",
+    "topic_51": "GPU"
+}
+
+category_map = {
+    "Development": [
+        "topic_0",   # CI/CD Workflow
+        "topic_7",   # Dependency Management
+        "topic_11",  # CLI tool
+        "topic_17",  # Build Performance
+        "topic_38",  # .NET build
+        "topic_40",  # Test Timeout
+    ],
+
+    "Low-level": [
+        "topic_1",   # Transpiler Benchmarking
+        "topic_10",  # Constant Folding
+        "topic_14",  # Compiler collection handling
+        "topic_15",  # VM Constant Folding
+        "topic_18",  # Compiler Runtime
+        "topic_20",  # Compiler improvement for Output
+        "topic_21",  # Group-by in Compiler
+        "topic_25",  # Builtin Optimization in Compiler
+        "topic_26",  # Kernel Usage Optimization
+        "topic_39",  # Transpiler Improvement for Output
+        "topic_42",  # VM Register
+        "topic_47",  # Go Compiler
+    ],
+
+    "UI": [
+        "topic_2",   # UI Data-loading and Rendering
+        "topic_12",  # UI loading and Rendering
+        "topic_24",  # Bundle Size
+        "topic_28",  # Responsive UI
+        "topic_30",  # File Scanning for UI
+        "topic_41",  # Redundant UI Update
+    ],
+
+    "Caching": [
+        "topic_3",   # TTL approximation
+        "topic_22",  # Caching Control
+        "topic_35",  # Offline Asset Caching
+        "topic_45",  # Caching Expiry
+    ],
+
+    "Algorithmic": [
+        "topic_4",   # Sequence Data Processing
+        "topic_23",  # Large Workload
+        "topic_33",  # Hashing
+        "topic_36",  # N+1 Query Optimization
+        "topic_43",  # .NET micro-optimizations
+        "topic_46",  # Scheduling
+        "topic_50",  # Redundant Function Call
+    ],
+
+    "Query": [
+        "topic_5",   # Join Query
+        "topic_29",  # Query Execution
+        "topic_49",  # Backend Query Update
+    ],
+
+    "Networking": [
+        "topic_6",   # Networking & I/O
+        "topic_19",  # HTTP Payload Caching
+        "topic_31",  # HTTP Client
+        "topic_32",  # DTO
+        "topic_37",  # Rate Limiting
+    ],
+
+    "Monitoring and Evaluation": [
+        "topic_8",   # Performance Benchmarking
+        "topic_13",  # Evaluation tooling
+        "topic_27",  # Benchmark Update
+        "topic_34",  # Telemetry and tracing
+    ],
+
+    "Hardware": [
+        "topic_9",   # Memory Leak
+        "topic_44",  # GPU Usage
+        "topic_51",  # GPU Acceleration
+    ],
+
+    "AI": [
+        "topic_16",  # LLM Token Usage
+        "topic_48",  # Chat API
+    ],
 }

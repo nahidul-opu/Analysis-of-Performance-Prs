@@ -15,3 +15,6 @@ transformers
 markdown
 swifter
 bertopic
+bertopic[spacy]
+spacy
+scipy

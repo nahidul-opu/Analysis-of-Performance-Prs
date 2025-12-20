@@ -1,18 +1,29 @@
 import pandas as pd
-
+import plotly.io as pio
 from modules.constants import *
 
 COLOR_MAP = {
-    "Human": "#56B4E9",
-    "OpenAI_Codex": "#D55E00",
+    # Human
+    "Human": "#000000",            # Black – maximum contrast, neutral reference
+
+    # OpenAI Codex family
+    "OpenAI_Codex": "#D55E00",      # Vermillion
     "OpenAI Codex": "#D55E00",
-    "Codex": "#F0E442",
-    "Devin": "#009E73",
-    "Copilot": "#0072B2",
+    "Codex": "#D55E00",             # Orange (distinct from vermillion)
+
+    # GitHub / Microsoft
+    "Copilot": "#0072B2",           # Strong blue
     "GitHub Copilot": "#0072B2",
-    "Cursor": "#785EF0",
-    "Claude_Code": "#DC267F",
-    "Claude Code": "#DC267F",
+
+    # Autonomous agents
+    "Devin": "#009E73",             # Bluish green
+
+    # Anthropic
+    "Claude_Code": "#CC79A7",       # Purple-pink
+    "Claude Code": "#CC79A7",
+
+    # IDE-native AI
+    "Cursor": "#56B4E9",             # Sky blue (lighter, high separation)
 }
 
 
@@ -36,6 +47,68 @@ mpl_params = {
 def read_aidev(name):
     return pd.read_parquet(AIDEV_DATA_DIR + name + ".parquet")
 
+pio.templates["custom_matplotlib_like"] = pio.templates["plotly"].update({
+    "layout": {
+        "font": {
+            "family": "Times New Roman, Times, DejaVu Serif",
+            "size": 14,
+        },
+        "title": {
+            "font": {
+                "size": 14,
+            }
+        },
+        "xaxis": {
+            "title": {
+                "font": {
+                    "size": 14,
+                }
+            },
+            "tickfont": {
+                "size": 14,
+            },
+        },
+        "yaxis": {
+            "title": {
+                "font": {
+                    "size": 14,
+                }
+            },
+            "tickfont": {
+                "size": 14,
+            },
+        },
+        "legend": {
+            "font": {
+                "size": 14,
+            },
+            "title": {
+                "font": {
+                    "size": 14,
+                }
+            }
+        }
+    }
+})
+
+MARKER_MAP = {
+    "Human": "circle",
+    
+    "OpenAI_Codex": "square",
+    "OpenAI Codex": "square",
+
+    "Codex": "diamond",
+
+    "Copilot": "triangle-up",
+    "GitHub Copilot": "triangle-up",
+
+    "Devin": "cross",
+
+    "Claude_Code": "triangle-down",
+    "Claude Code": "triangle-down",
+
+    "Cursor": "x",
+}
 
 
 topic_map = {
@@ -159,7 +232,7 @@ category_map = {
         "topic_37",  # Rate Limiting
     ],
 
-    "Monitoring and Evaluation": [
+    "Analytics": [
         "topic_8",   # Performance Benchmarking
         "topic_27",  # Benchmark Update
         "topic_34",  # Telemetry and tracing

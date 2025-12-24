@@ -104,11 +104,11 @@ base_text = ", ".join(keywords)
 prompt = [
     {
         "role": "system",
-        "content": "ou are a GitHub Pull Request Classification Agent. Given a text combining the title and body of a pull request, determine whether the primary purpose of the pull request is to improve performance. Classify each pull request as either 'performance' or 'non-performance'. Performance-related pull requests may contain keywords such as "
+        "content": "You are a GitHub Pull Request Classification Agent. Given a text combining the title and body of a pull request, determine whether the primary purpose of the pull request is to improve performance. Classify each pull request as either 'performance' or 'non-performance'. Performance-related pull requests may contain keywords such as "
         + ", ".join(keywords) + ", or any other terms referring to how faster and efficiently software runs.",
     }
 ]
 classifier = LLMClassifier(prompt)
 preprocessor = None
 
-df = filter_performance_topics(filename, columns, preprocessor, classifier, save, 3875)
+df = filter_performance_topics(filename, columns, preprocessor, classifier, save, 0)

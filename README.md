@@ -37,12 +37,19 @@ MSR-MiningChallenge26/
 ├── RQ1.ipynb                          # Research Question 1
 ├── RQ2.ipynb                          # Research Question 2
 ├── RQ3.ipynb                          # Research Question 3
-
+├── TopicModeling.ipynb                # Topic Modeling with BERTopic
+├── Analysis.ipynb                     # Keyword base filtering and other analysis 
+├── filter.py                          # Use LLM to classify PR (Performance vs Non-Performance)
+├── Run.sh                             # Run SLURM job to use LLM for classification
 ```
 
 ## Notebooks Description
 
 Each notebook loads harmonized PR datasets from `Outputs/PerformancePRs/` (plus the BERTopic exports under `Outputs/BERTopic/`) and writes refreshed figures back into `Outputs/Figures/`. They share helper functions from `modules/` so the code paths stay consistent across experiments.
+
+
+### TopicModeling.ipynb
+BERTopic modeling with Qwen3-Embedding-8b, UMAP, HDBSCAN and constraint grid search. 
 
 ### RQ1.ipynb – Topics and Categories
 ***What categories of performance optimizations do agentic AIs address?***

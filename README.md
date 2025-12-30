@@ -1,4 +1,3 @@
-# MSR-MiningChallenge26
 
 ## Setup
 1. create virtual environment: virtualenv .venv
@@ -64,4 +63,4 @@ We observed an overall rejection rate of 36.5\% in performance-related PRs, whic
 ### RQ3.ipynb – Association with SDLC Activities
 What SDLC activities are associated with AI-generated performance-related PRs?
 
-We found that performance-related PRs are more associated with feature implementation (i.e., development activities) and comparatively less associated with bug fixes, refactoring, and testing. This may indicate a potential gap in AI-assisted performance optimization during the maintenance phase.
+We found that performance-related PRs are more associated with feature implementation (i.e., development activities) and comparatively less associated with bug fixes, refactoring, and testing. This may indicate a potential gap in AI-assisted performance optimization during the maintenance ph

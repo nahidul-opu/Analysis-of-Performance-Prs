@@ -103,18 +103,6 @@ Thus answer: performance.assistantfinalperformance",Performance
 
 ------
 https://chatgpt.com/codex/tasks/task_e_686163d459a8832091f5698d8a0d1d64",OpenAI_Codex,1218621,tamnd,closed,2025-06-29T16:17:31Z,2025-06-29T16:17:47Z,2025-06-29T16:17:47Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3988,"analysisWe need to classify as performance or non-performance. The PR title: ""Improve group by compilation"". Summary: ""optimize VM group by compile logic to avoid extra index lookups"". That is a performance optimization. So label 'performance'.assistantfinalperformance",Performance
-3261752051,12881,Add Python benchmark wrapper,"## Summary
-- update Python transpiler to wrap programs without a main function in a benchmark block
-- record memory usage via `resource.getrusage`
-- update rosetta progress table to use check mark status and show benchmark stats
-- regenerate `100-doors-2` Python output with benchmark info
-
-## Testing
-- `MOCHI_ROSETTA_INDEX=1 MOCHI_BENCHMARK=true go test -tags=slow -run TestPyTranspiler_Rosetta_Golden/001 -update-rosetta-py -count=1`
-- `python3 tests/rosetta/transpiler/Python/100-doors-2.py > tests/rosetta/transpiler/Python/100-doors-2.bench`
-
-------
-https://chatgpt.com/codex/tasks/task_e_6882e402dff88320839a16af24da66cd",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T02:14:35Z,2025-07-25T02:14:49Z,2025-07-25T02:14:49Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12881,"analysisWe need to classify as performance or non-performance. The PR adds a Python benchmark wrapper, records memory usage, updates progress table, regenerates output with benchmark info. This is about benchmarking, measuring performance, memory usage. So it's performance. The classification: 'performance'.assistantfinalperformance",Performance
 3234031765,1066,Optimize page table slicing,"## Summary
 - optimize loops in page_table
 - slice updated sequences and token counts by num_active
@@ -126,98 +114,6 @@ https://chatgpt.com/codex/tasks/task_e_6882e402dff88320839a16af24da66cd",OpenAI_
 
 ------
 https://chatgpt.com/codex/tasks/task_e_6876ec7ca3dc83318ce01950914aa611",OpenAI_Codex,9633,dlwh,closed,2025-07-16T00:16:42Z,2025-07-16T00:16:51Z,2025-07-16T00:16:50Z,496005961,https://api.github.com/repos/stanford-crfm/levanter,https://github.com/stanford-crfm/levanter/pull/1066,"analysisWe need to classify as performance or non-performance. The PR title: ""Optimize page table slicing"". Summary: ""optimize loops in page_table"", ""slice updated sequences and token counts by num_active"", ""update tests for new PageBatchInfo signature"". This is about optimizing loops, slicing, performance. So it's performance. So output 'performance'.assistantfinalperformance",Performance
-3112822851,27,Add viewer and adaptive resolution,"## Summary
-- add a simple WebRTC `viewer.html`
-- document remote viewer and adaptive mode in README
-- implement adaptive resolution toggle in `j360.ts`
-- expose `toggleAdaptive` in type declarations
-- support `--adaptive` option in CLI
-- update CLI and encoder tests
-- provide test stubs for TypeScript and ffmpeg
-
-## Testing
-- `npm test`
-
-------
-https://chatgpt.com/codex/tasks/task_e_683e862c544c8328adca501270226361",OpenAI_Codex,843228,imgntn,closed,2025-06-03T07:38:24Z,2025-06-03T07:39:25Z,2025-06-03T07:39:25Z,76519330,https://api.github.com/repos/imgntn/j360,https://github.com/imgntn/j360/pull/27,"analysisWe need to classify whether the primary purpose is performance improvement. The PR adds viewer and adaptive resolution, implements adaptive resolution toggle, support CLI option, update tests. The focus is on adaptive resolution, which is about performance? Adaptive resolution toggling can improve performance by reducing resolution to improve speed. But is the primary purpose performance? The PR adds viewer and adaptive resolution, but the main change is adding adaptive resolution toggle. That is a performance improvement feature. The description: ""implement adaptive resolution toggle in j360.ts"" and ""support --adaptive option in CLI"". Adaptive resolution is about performance. So likely performance. The guidelines: performance-related PR may contain keywords like performance, speed, etc. The title: ""Add viewer and adaptive resolution"". The body: ""implement adaptive resolution toggle"". That is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
-3169971812,2758,Add CFG inference to VM,"## Summary
-- add a new `infer.go` implementing type inference across the bytecode CFG
-- rewrite arithmetic/comparison ops based on inferred register types
-- run the inference optimisation step after compilation
-- update golden IR outputs for optimised opcodes
-
-## Testing
-- `go test ./tests/vm`
-
-------
-https://chatgpt.com/codex/tasks/task_e_685a04eb49e08320b2c7df3d7966ea88",OpenAI_Codex,1218621,tamnd,closed,2025-06-24T02:03:10Z,2025-06-24T04:08:15Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2758,"analysisWe need to classify whether the primary purpose is performance. The PR adds CFG inference to VM, rewrites arithmetic/comparison ops based on inferred register types, runs inference optimization step after compilation, updates golden IR outputs for optimised opcodes. This seems to be about optimization, improving performance. Keywords: optimization, inference, rewrite ops, run inference optimization step. So it's performance. So label 'performance'.assistantfinalperformance",Performance
-3187833970,981,feat: add support for plain TXT files,"
-# Add TXT file support with line-by-line splitting for fastlane metadata
-
-## Summary
-
-Implements TXT file support in the Lingo.dev CLI loader system to handle fastlane metadata translation workflows. The key innovation is **line-by-line splitting** - instead of treating the entire file as a single translatable unit, each line becomes a separate translatable unit with numeric keys (""1"", ""2"", ""3"", etc.).
-
-This approach solves the chunking problem for large TXT files since the SDK can now chunk at the line level rather than being forced to send massive single strings to the LLM.
-
-**Key Changes:**
-- Added `txt` to supported bucket types in formats specification
-- Created new TXT loader that splits content by lines into 1-indexed numeric keys
-- Integrated TXT loader into the main loader factory with standard composition pattern
-- Empty lines are handled automatically by the unlocalizable loader (filtered during pull, restored during push)
-- Added comprehensive test suite covering load/save, empty files, and empty line handling
-
-## Review & Testing Checklist for Human
-
-- [ ] **Test with real fastlane metadata files** - Verify line-by-line behavior works correctly with actual metadata content, not just synthetic test cases
-- [ ] **Verify empty line handling in practice** - Test files with various empty line patterns to ensure the unlocalizable loader approach works reliably
-- [ ] **Confirm chunking solves the original problem** - Test that large TXT files now chunk properly at the line level and don't overwhelm LLM token limits
-- [ ] **Check edge cases** - Test files with only empty lines, very large files, mixed content patterns, and single-line files
-
-**Recommended test plan:** Create sample fastlane metadata TXT files with various patterns (normal lines, empty lines, large content) and run through the full translation workflow to verify line structure preservation and chunking behavior.
-
----
-
-### Diagram
-
-```mermaid
-%%{ init : { ""theme"" : ""default"" }}%%
-graph TD
-    subgraph Legend
-        L1[""Major Edit""]:::major-edit
-        L2[""Minor Edit""]:::minor-edit  
-        L3[""Context/No Edit""]:::context
-    end
-
-    spec[""packages/spec/src/formats.ts<br/>+txt bucket type""]:::minor-edit
-    indexLoader[""packages/cli/src/cli/loaders/index.ts<br/>+txt case""]:::minor-edit
-    txtLoader[""packages/cli/src/cli/loaders/txt.ts<br/>NEW FILE""]:::major-edit
-    tests[""packages/cli/src/cli/loaders/index.spec.ts<br/>+txt tests""]:::major-edit
-    
-    textFileLoader[""createTextFileLoader""]:::context
-    syncLoader[""createSyncLoader""]:::context
-    unlocalizableLoader[""createUnlocalizableLoader""]:::context
-    
-    spec --> indexLoader
-    indexLoader --> txtLoader
-    txtLoader --> textFileLoader
-    textFileLoader --> syncLoader
-    syncLoader --> unlocalizableLoader
-    
-    tests -.-> txtLoader
-    
-    classDef major-edit fill:#90EE90
-    classDef minor-edit fill:#87CEEB  
-    classDef context fill:#FFFFFF
-```
-
-### Notes
-
-- **Empty line handling evolution**: Initially implemented space placeholder workaround, then simplified to rely on unlocalizable loader's automatic empty string filtering/restoration. The current approach is cleaner but less explicit.
-- **Loader composition pattern**: Uses the same 4-loader composition as other file types (text-file → txt → sync → unlocalizable), ensuring consistency with existing patterns.
-- **1-indexed keys**: Follows SRT loader convention with numeric keys starting from ""1"" rather than ""0"".
-- **Session details**: Requested by @mathio, implemented in Devin session https://app.devin.ai/sessions/581a22c71ce44db8adaff265fb5d1c6d
-",Devin,158243242,devin-ai-integration[bot],closed,2025-06-30T09:42:27Z,2025-07-01T08:43:01Z,2025-07-01T08:43:01Z,771479895,https://api.github.com/repos/lingodotdev/lingo.dev,https://github.com/lingodotdev/lingo.dev/pull/981,"analysisWe need to classify as performance or non-performance. The PR adds support for plain TXT files, with line-by-line splitting to solve chunking problem for large TXT files. The key innovation is line-by-line splitting to avoid sending massive single strings to LLM. This is about chunking, which is about performance (avoiding large token usage). The description mentions ""chunking solves the original problem"" and ""large TXT files now chunk properly at the line level and don't overwhelm LLM token limits"". This is a performance improvement. So classification: performance.assistantfinalperformance",Performance
 3258971322,4469,Fix socket exhaustion in GlideClusterClient tests by optimizing connection management,"## Problem
 
 The CI Full Matrix tests were failing with socket address exhaustion errors:
@@ -351,17 +247,6 @@ Optimized the event type query by fetching user team IDs first and using an ""in
 <!-- End of auto-generated description by mrge. -->
 
 ",Devin,158243242,devin-ai-integration[bot],closed,2025-05-07T15:43:58Z,2025-05-07T20:00:49Z,2025-05-07T20:00:49Z,350360184,https://api.github.com/repos/calcom/cal.com,https://github.com/calcom/cal.com/pull/21162,"analysisWe need to classify as 'performance' or 'non-performance'. The PR title: ""perf: optimize event type query by using team IDs instead of complex join"". The description says it's optimizing query, improving performance. So classification: 'performance'.assistantfinalperformance",Performance
-3186381329,4002,Optimize outer join in VM,"## Summary
-- implement compileHashOuterJoin for hashed full outer join
-- wire outer join optimization into compileJoinQuery
-- document benchmark update for outer joins
-- regenerate `outer_join.ir.out`
-
-## Testing
-- `go build ./...`
-
-------
-https://chatgpt.com/codex/tasks/task_e_6861722f141883208bff79fcb7c95f04",OpenAI_Codex,1218621,tamnd,closed,2025-06-29T17:25:32Z,2025-06-29T17:26:25Z,2025-06-29T17:26:25Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/4002,"analysisWe need to classify as performance or non-performance. The PR title: ""Optimize outer join in VM"". Summary: implement compileHashOuterJoin for hashed full outer join, wire outer join optimization into compileJoinQuery, document benchmark update for outer joins, regenerate outer_join.ir.out. This is about optimizing outer join, likely performance improvement. Keywords: optimize, performance, compileHashOuterJoin, benchmark update. So classification: performance.assistantfinalperformance",Performance
 3136041106,14760,Fix scroll wheel responsiveness in Windows App SDK by using system scroll settings,"## Problem
 
 Scroll wheel behavior in React Native Windows using the new architecture (Windows App SDK) was significantly less responsive compared to the WinUI 3 Gallery app and other native Windows applications. Users reported that scrolling felt sluggish and required much more effort, with fewer lines scrolled per wheel notch than expected.
@@ -569,7 +454,6 @@ Successfully migrated from REST API to IPC communication using:
 
 ------
 https://chatgpt.com/codex/tasks/task_e_6867227b07bc8327916802ace9a0cc74",OpenAI_Codex,30680697,ahmeda14960,closed,2025-07-04T01:20:53Z,2025-07-04T01:23:57Z,2025-07-04T01:23:57Z,775839592,https://api.github.com/repos/marin-community/marin,https://github.com/marin-community/marin/pull/1431,"analysisWe need to classify as performance or non-performance. The PR title: ""Speed up P(z) and fix Parquet write"". Summary: compute P(z) on device before transferring logits to CPU; build rows with explicit dtype to satisfy PyArrow. This is about speed up P(z) and fix Parquet write. So it's performance improvement. So label 'performance'.assistantfinalperformance",Performance
-3196341284,423,Add drain benchmark strategy,,OpenAI_Codex,16663421,janbjorge,closed,2025-07-02T15:38:33Z,2025-07-03T12:04:57Z,2025-07-03T12:04:57Z,788904329,https://api.github.com/repos/janbjorge/pgqueuer,https://github.com/janbjorge/pgqueuer/pull/423,"analysisWe need to classify the PR as performance or non-performance. The title: ""Add drain benchmark strategy"". Body not provided. The title suggests adding a benchmark strategy for drain. Could be performance? ""drain benchmark strategy"" might be about measuring performance of draining operations. But could also be about adding a strategy for draining something, maybe a queue. Without body, we guess. The phrase ""benchmark"" indicates performance measurement. So likely performance. So classify as 'performance'.assistantfinalperformance",Performance
 3034997303,13284,Optimize CLI dependencies,"# Dependency Optimization for CLI Package
 
 This PR optimizes the dependency footprint of the Vercel CLI package, achieving the following:
@@ -613,26 +497,6 @@ Requested by: lee@vercel.com
 This PR is about optimizing dependencies, reducing size, but does it improve performance? It reduces size, which may improve performance (load time, memory). But the keywords: ""Optimize CLI dependencies"" - optimization. The body mentions ""dependency footprint"", ""compressed node_modules size"", ""total package count"", ""libraries with multiple versions"". It's about reducing size, which can improve performance. But is it explicitly about performance? The instructions say performance-related PRs may contain keywords such as memory, optimization, leak, speed, perf, etc. The word ""optimization"" is present. So likely performance. But is it ""performance"" or ""non-performance""? The classification is binary. The PR is about optimizing dependencies, which is a performance improvement. So classify as 'performance'.
 
 Thus answer: performance.assistantfinalperformance",Performance
-2986072834,202,Add customizable PostgreSQL connection pool settings,"- Create explicit connection pool with configurable settings
-- Use settings for min_size, max_size, and max_idle
-- Update documentation with examples
-- Add to README feature list
-
-🤖 Generated with [Claude Code](https://claude.ai/code)
-Co-Authored-By: Claude <noreply@anthropic.com>",Claude_Code,8251002,JoshuaC215,closed,2025-04-10T15:28:26Z,2025-04-11T05:02:46Z,2025-04-11T05:02:46Z,838093526,https://api.github.com/repos/JoshuaC215/agent-service-toolkit,https://github.com/JoshuaC215/agent-service-toolkit/pull/202,"analysisWe need to classify whether the primary purpose is performance. The PR adds customizable PostgreSQL connection pool settings: min_size, max_size, max_idle. This is about connection pooling, which can affect performance. But is the primary purpose performance? It is about adding configuration for connection pool, which can improve performance by tuning. The description: ""Add customizable PostgreSQL connection pool settings"" - that is about performance tuning. The keywords: ""performance"" not explicitly present, but ""connection pool"" is a performance optimization. The instruction says performance-related PR may contain keywords such as latency, optimization, slow, react, wait, memory, speed, responsive, minor, tim, instant, latenc, leak, lag, respons, stuck, perf, compile-time-hog, fast, hang, throughput, performance, perform, or any other terms referring to how faster and efficiently software runs. The PR does not contain those keywords, but the content is about connection pool settings, which is a performance improvement. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The PR is about adding customizable connection pool settings. That is a performance improvement. So classify as 'performance'.
-
-Thus answer: performance.assistantfinalperformance",NonPerformance
-3168819278,2736,Regenerate benchmarks and adjust Go label,"## Summary
-- rerun benchmarks and update BENCHMARK.md
-- regenerate benchmark output files
-- rename Go benchmark label to `Mochi (Go)`
-
-## Testing
-- `go test ./types`
-- `go run ./cmd/mochi-bench > /tmp/bench.log`
-
-------
-https://chatgpt.com/codex/tasks/task_e_68598306e0948320be0f9896b90076ec",OpenAI_Codex,1218621,tamnd,closed,2025-06-23T16:47:41Z,2025-06-23T16:47:57Z,2025-06-23T16:47:57Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2736,"analysisWe need to classify as performance or non-performance. The PR title: ""Regenerate benchmarks and adjust Go label"". Summary: rerun benchmarks and update BENCHMARK.md, regenerate benchmark output files, rename Go benchmark label. This is about benchmarks, performance. So classification: performance.assistantfinalperformance",Performance
 2858841754,2385,chore: add cargo workspaces to rust-cache action,"Add all Cargo workspaces to the rust-cache action to improve cache hits.
 
 This PR adds workspace paths for:
@@ -782,26 +646,6 @@ Fixes #276.
 
 ------
 https://chatgpt.com/codex/tasks/task_e_683bffad4210832994604d39bc13f86a",OpenAI_Codex,1070321,peter-lawrey,closed,2025-06-01T07:46:49Z,2025-06-01T07:47:17Z,2025-06-01T07:47:17Z,31261793,https://api.github.com/repos/OpenHFT/Chronicle-Core,https://github.com/OpenHFT/Chronicle-Core/pull/814,"analysisWe need to classify as performance or non-performance. The PR title: ""Improve Wget builder defaults and reading efficiency"". Summary: use char buffer for better efficiency in Wget.fetch, create default connection provider lazily, document default value, update test. This is about reading efficiency, char buffer, performance. So it's performance. So output 'performance'.assistantfinalperformance",Performance
-3222837614,7790,Add tailrec detection for Kotlin compiler,"## Summary
-- detect simple tail recursion in Kotlin compiler and emit `tailrec`
-- update Kotlin machine README progress and tasks
-
-## Testing
-- `go vet ./...`
-- `go test ./compiler/x/kotlin -tags slow`
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_687107680470832093d43b142321e900",OpenAI_Codex,1218621,tamnd,closed,2025-07-11T12:59:03Z,2025-07-11T12:59:14Z,2025-07-11T12:59:14Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/7790,"analysisWe need to classify whether the primary purpose of the PR is to improve performance. The PR adds tailrec detection for Kotlin compiler. That is a compiler optimization to detect tail recursion and emit tailrec. This is a performance improvement? Tail recursion optimization can improve performance by eliminating recursion overhead, but it's more about correctness and optimization. The description: ""detect simple tail recursion in Kotlin compiler and emit `tailrec`"". That is a compiler optimization. It might improve performance by enabling tail recursion elimination. But is the primary purpose performance? It could be correctness or language feature. But tailrec is a language feature that allows the compiler to optimize recursion. The PR is about adding detection and emitting tailrec. That is a performance optimization. The guidelines: performance-related PRs may contain keywords like optimization, speed, etc. This PR mentions ""tailrec detection"" which is an optimization. So likely performance. The classification: 'performance'.assistantfinalperformance",Performance
-3111305843,1453,[alpha_factory] add gzip size test,"## Summary
-- check gzip size of `dist/app.js` in the Insight browser demo
-
-## Testing
-- `pytest -q alpha_factory_v1/demos/alpha_agi_insight_v1/insight_browser_v1/tests/test_bundle_size.py`
-- `pytest -q` *(fails: ValueError: Duplicated timeseries in CollectorRegistry)*
-
-------
-https://chatgpt.com/codex/tasks/task_e_683df5435f008333932fe0ecb6f1d9f8",OpenAI_Codex,24208299,MontrealAI,closed,2025-06-02T19:07:10Z,2025-06-02T19:07:18Z,2025-06-02T19:07:18Z,922805069,https://api.github.com/repos/MontrealAI/AGI-Alpha-Agent-v0,https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1453,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""[alpha_factory] add gzip size test"". Summary: check gzip size of dist/app.js in the Insight browser demo. It's about testing gzip size, which is a performance metric. The body mentions test failures. It's about measuring size, which is performance. So classify as 'performance'.assistantfinalperformance",Performance
 3158983348,975,fix: docker container cleanup to prevent accumulation and system slowdown,"## Problem
 
 Docker containers were not being properly cleaned up after running experiments, causing containers to accumulate over time and making the system progressively slower. This issue occurred in three locations where containers were only cleaned up in success paths but not when exceptions occurred.
@@ -998,18 +842,6 @@ All changes maintain full backward compatibility. Existing code continues to wor
 
 ------
 https://chatgpt.com/codex/tasks/task_e_684bd59b9ccc8320b5e9a44429fe1b2b",OpenAI_Codex,747051,bobzhang,open,2025-06-13T08:46:02Z,,,749681472,https://api.github.com/repos/moonbitlang/core,https://github.com/moonbitlang/core/pull/2267,"analysisWe need to classify as performance or non-performance. The PR title: ""Improve SortedSet union"". Summary: ""optimize `union` in SortedSet avoid re-counting elements by tracking size during tree copy/merge"". This is about performance optimization. So classification: performance.assistantfinalperformance",Performance
-3261612045,12814,Add memory tracking for bench blocks in C++ transpiler,"## Summary
-- implement `_mem()` helper that returns process memory usage via `getrusage`
-- capture memory before and after `bench` blocks and print the difference
-- enable `UseMem` tracking through the transpiler
-- commit generated `bench_block.cpp`
-
-## Testing
-- `go test -tags slow ./transpiler/x/cpp -run TestCPPTranspiler_VMValid_Golden/bench_block -count=1`
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_6882807000348320b142c69603e39e65",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T00:51:34Z,2025-07-25T00:51:48Z,2025-07-25T00:51:48Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12814,"analysisWe need to classify as performance or non-performance. The PR adds memory tracking for bench blocks, capturing memory before and after, printing difference. This is about memory usage, performance. So classification: performance.assistantfinalperformance",Performance
 3107735616,1377,[alpha_factory] Speed up Pareto front,"## Summary
 - speed up Pareto front computation with a single scan
 - increase performance test population size
@@ -1077,28 +909,6 @@ The upgrade is ready for production deployment with no additional migration step
 ---
 
 💬 Share your feedback on Copilot coding agent for the chance to win a $200 gift card! Click [here](https://survey.alchemer.com/s3/8343779/Copilot-Coding-agent) to start the survey.",Copilot,198982749,Copilot,closed,2025-06-15T13:00:43Z,2025-06-16T08:06:10Z,2025-06-16T08:06:10Z,274495425,https://api.github.com/repos/remotion-dev/remotion,https://github.com/remotion-dev/remotion/pull/5375,"analysisWe need to classify as 'performance' or 'non-performance'. The PR is about upgrading Docusaurus dependencies to improve performance, security, features. It explicitly says ""to improve performance"". So it's performance. The guidelines: performance-related PRs may contain keywords like performance, etc. This one contains ""performance"" in the description. So classify as 'performance'.assistantfinalperformance",Performance
-3261724373,12865,Add benchmark mode to scheme transpiler,"## Summary
-- support benchmarking in the Scheme transpiler
-- update Scheme rosetta tests to handle benchmark mode
-- update golden output with benchmark data
-
-## Testing
-- `MOCHI_ROSETTA_INDEX=1 MOCHI_BENCHMARK=1 go test -tags=slow ./transpiler/x/scheme -run Rosetta -count=1`
-
-------
-https://chatgpt.com/codex/tasks/task_e_6882de5ac9b8832097347de04ffae021",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T01:58:29Z,2025-07-25T01:58:48Z,2025-07-25T01:58:48Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12865,"analysisWe need to classify as performance or non-performance. The PR adds benchmark mode to scheme transpiler, updates tests, golden output with benchmark data. This is about benchmarking, performance measurement. The primary purpose is to add benchmark mode, which is performance-related. So classify as 'performance'.assistantfinalperformance",Performance
-3261682254,12844,Add CS benchmark mode and update Rosetta,"## Summary
-- add benchmark block option to CS transpiler
-- capture durations and memory in Rosetta tests
-- skip MOCHI_NOW_SEED when benchmarking
-- parse JSON results from the output
-- regenerate code/output for `100-doors-2`
-
-## Testing
-- `MOCHI_ROSETTA_INDEX=1 MOCHI_BENCHMARK=1 go test -tags slow ./transpiler/x/cs -run Rosetta -count=1 -v`
-
-------
-https://chatgpt.com/codex/tasks/task_e_6882dc5bbf748320816593903b0c59e5",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T01:32:25Z,2025-07-25T01:32:39Z,2025-07-25T01:32:39Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12844,"analysisWe need to classify as performance or non-performance. The PR adds CS benchmark mode, captures durations and memory, skip seed, parse JSON results, regenerate code. This is about benchmarking, measuring performance. So it's performance.assistantfinalperformance",Performance
 3186037018,3948,Optimize inner join in VM,"## Summary
 - tune inner join code generation
 - regenerate benchmark results
@@ -1398,78 +1208,6 @@ Fixes # (issue)
 - [ ] I haven't checked if my changes generate no new warnings (`npm run lint`)
 - [ ] I haven't added tests that prove my fix is effective or that my feature works
 - [ ] I haven't checked if new and existing unit tests pass locally with my changes",Cursor,2834609,marcklingen,open,2025-07-01T07:19:19Z,,,642497346,https://api.github.com/repos/langfuse/langfuse,https://github.com/langfuse/langfuse/pull/7585,"analysisWe need to classify as 'performance' or 'non-performance'. The PR title: ""Improve dev server performance and report"". Body: mentions optimizations to speed up dev server startup, reduce startup time, etc. This is clearly performance. So label 'performance'.assistantfinalperformance",Performance
-3208672912,718,Add realtime events for agent typing and reply broadcasting,"
-# Address PR feedback: use channel helper, implement throttle, move typing trigger
-
-## Summary
-
-This PR addresses three specific GitHub comments from binary-koan on the realtime events implementation:
-
-1. **Channel Helper Function**: Added `conversationRealtimeChannelId` helper function to `lib/realtime/channels.ts` and updated all 4 locations using the `conversation-${slug}` pattern to use this centralized helper.
-
-2. **Throttle vs Debounce**: Changed typing event logic from debounce (8s delay before sending) to throttle (send immediately, then block subsequent sends for 8s). Implemented using timestamp tracking instead of setTimeout for better performance.
-
-3. **TipTap Editor Integration**: Moved typing event trigger from `updateDraftedEmail` to TipTap editor's `onUpdate` callback, ensuring typing events trigger on actual editor changes rather than any draft updates.
-
-## Review & Testing Checklist for Human
-
-⚠️ **High Risk - Requires Thorough Testing** (5 items)
-
-- [ ] **End-to-end realtime functionality**: Test that typing events are broadcast immediately on first keypress in dashboard and typing indicators appear in widget, then verify 8-second throttle blocking works correctly
-- [ ] **TipTap editor integration**: Verify typing events trigger on actual editor key presses and not on programmatic content changes or other draft updates
-- [ ] **Event scoping**: Test with multiple conversations open to ensure events are properly scoped to conversation slugs and don't leak between different conversations
-- [ ] **Throttle edge cases**: Test rapid typing, network interruptions, and tab switching to ensure throttle logic handles edge cases correctly
-- [ ] **No regressions**: Verify existing reply event broadcasting and 10-second timeout functionality still works correctly
-
-**Recommended Test Plan:**
-1. Open dashboard conversation view and corresponding widget side-by-side
-2. Type in dashboard - verify typing indicator appears immediately in widget
-3. Continue typing rapidly - verify no additional typing events sent for 8 seconds
-4. Test with multiple conversations to ensure proper event isolation
-5. Verify reply events and existing functionality still work
-
----
-
-### Diagram
-
-```mermaid
-%%{ init : { ""theme"" : ""default"" }}%%
-graph TD
-    Dashboard[""app/(dashboard)/mailboxes/[mailbox_slug]/[category]/conversation/messageActions.tsx<br/>Dashboard Conversation""]:::major-edit
-    Widget[""components/widget/Conversation.tsx<br/>Chat Widget""]:::minor-edit
-    Channels[""lib/realtime/channels.ts<br/>Channel Helper""]:::major-edit
-    TipTap[""components/tiptap/editor.tsx<br/>TipTap Editor""]:::context
-    Supabase[""Supabase Realtime<br/>Channel System""]:::context
-
-    Dashboard -->|""uses""| Channels
-    Widget -->|""uses""| Channels
-    Dashboard -->|""onUpdate callback""| TipTap
-    Dashboard -->|""throttled broadcast""| Supabase
-    Supabase -->|""listen events""| Widget
-
-    subgraph Legend
-        L1[Major Edit]:::major-edit
-        L2[Minor Edit]:::minor-edit
-        L3[Context/No Edit]:::context
-    end
-
-    classDef major-edit fill:#90EE90
-    classDef minor-edit fill:#87CEEB
-    classDef context fill:#FFFFFF
-```
-
-### Notes
-
-- **Environment Issues**: Local development environment had persistent Docker PostgreSQL setup timeout issues, preventing end-to-end testing of the realtime functionality. This significantly increases the risk of bugs.
-- **Merge Conflicts**: Had to resolve complex merge conflicts during rebase, which required careful preservation of both autofix changes and new implementations.
-- **Throttle Implementation**: Uses `Date.now()` timestamp comparison instead of setTimeout for more reliable throttle behavior across browser tabs and network conditions.
-- **Channel Naming**: The helper function centralizes the `conversation-${slug}` pattern used across 4 different locations in the codebase.
-
-**Link to Devin run**: https://app.devin.ai/sessions/29c331cda1144d649eb058a1416a13ad  
-**Requested by**: reason.koan@gmail.com
-",Devin,158243242,devin-ai-integration[bot],closed,2025-07-07T11:40:25Z,2025-07-09T23:59:42Z,2025-07-09T23:59:42Z,941289933,https://api.github.com/repos/antiwork/helper,https://github.com/antiwork/helper/pull/718,"analysisWe need to classify whether the primary purpose of the pull request is to improve performance. The PR is about adding realtime events for agent typing and reply broadcasting. It addresses channel helper, throttle vs debounce, and editor integration. The changes include switching from debounce to throttle, using timestamp tracking instead of setTimeout for better performance. That is a performance improvement: throttle vs debounce, timestamp tracking. Also mention ""better performance"". The PR is about realtime events, but the main change is throttle logic to reduce network traffic, which is a performance improvement. The classification: 'performance'.
-
-Check if any other aspects: The PR is about adding realtime events, but the main change is throttle vs debounce. That is a performance improvement. So classification: performance.assistantfinalperformance",Performance
 3161998177,2104,feat: optimize supabase start in CI with Docker caching and service exclusion,"# Optimize supabase start in CI with Docker caching and service exclusion
 
 ## Summary
@@ -1706,42 +1444,6 @@ classDef context fill:#F5F5F5
 **Session Details:**
 - Link to Devin run: https://app.devin.ai/sessions/1d370d2ace1a4f21a282daeb23d64ff2
 - Requested by: Abdelrahman Ismail (@ismail9k)",Devin,158243242,devin-ai-integration[bot],open,2025-07-16T11:05:12Z,,,258840419,https://api.github.com/repos/ismail9k/vue3-carousel,https://github.com/ismail9k/vue3-carousel/pull/526,"analysisWe need to classify as 'performance' or 'non-performance'. The PR title: ""feat: optimize transform parsing performance and add comprehensive performance analysis"". The body clearly states performance improvements, optimization, speed, etc. So classification: 'performance'.assistantfinalperformance",Performance
-3129475228,1947,Convert RecentsSection from Client to Server Component,"# Convert RecentsSection from Client to Server Component
-
-## Summary
-Converted the `RecentsSection` component from a Client Component to a Server Component by removing client-side data fetching and replacing it with server-side data fetching using `await`.
-
-## Changes Made
-- **Removed `'use client'` directive** from both `RecentsSection.tsx` and `fetchRecentSessions.ts`
-- **Updated `fetchRecentSessions` service** to use server-side Supabase client (`@/libs/db/server`)
-- **Replaced client-side hooks** (`useEffect`, `useState`) with server-side data fetching
-- **Modified `GlobalNav` component** to fetch recent sessions data and pass as props to `RecentsSection`
-- **Removed loading state logic** as server components don't need client-side loading states
-
-## Technical Details
-- `fetchRecentSessions` now uses `await createClient()` for server-side database access
-- `GlobalNav` is now an async function that fetches data before rendering
-- `RecentsSection` receives sessions data via props instead of fetching client-side
-- Authentication context is properly handled server-side through Supabase server client
-
-## Files Modified
-- `frontend/apps/app/components/CommonLayout/GlobalNav/services/fetchRecentSessions.ts`
-- `frontend/apps/app/components/CommonLayout/GlobalNav/RecentsSection/RecentsSection.tsx`
-- `frontend/apps/app/components/CommonLayout/GlobalNav/GlobalNav.tsx`
-
-## Testing
-- ✅ Build passes (`pnpm build`)
-- ✅ Linting passes (biome, TypeScript, ESLint)
-- ✅ No TypeScript compilation errors
-
-## Link to Devin run
-https://app.devin.ai/sessions/ca08a6cc7b484ec683ad4105c9198769
-
-## Requested by
-hirotaka.miyagi@route06.co.jp
-",Devin,158243242,devin-ai-integration[bot],closed,2025-06-09T07:43:48Z,2025-06-09T11:32:31Z,2025-06-09T11:32:31Z,839216423,https://api.github.com/repos/liam-hq/liam,https://github.com/liam-hq/liam/pull/1947,"analysisWe need to classify whether the primary purpose of the pull request is to improve performance. The PR is converting RecentsSection from Client to Server Component. This is about moving data fetching to server side, removing client side hooks, etc. This is likely a performance improvement: server components reduce client bundle size, reduce client-side rendering, etc. The description mentions ""removed client-side data fetching and replaced it with server-side data fetching using await."" That is a performance improvement. The keywords: ""performance"" is not explicitly mentioned, but the change is about server components, which is a performance improvement. The instruction says performance-related PRs may contain keywords such as memory, optimization, leak, speed, perf, stuck, lag, fast, respons, slow, latency, performance, latenc, hang, tim, throughput, compile-time-hog, instant, responsive, react, perform, wait, minor, or any other terms referring to how faster and efficiently software runs. The PR description does not contain those keywords, but the change is about performance. The instruction says ""Performance-related pull requests may contain keywords such as... or any other terms referring to how faster and efficiently software runs."" It doesn't say that the presence of keywords is required. It says ""may contain keywords"" but not that they must. The classification is based on the primary purpose. The primary purpose is to convert RecentsSection from Client to Server Component, which is a performance improvement. So classify as 'performance'.
-
-Thus answer: performance.assistantfinalperformance",Performance
 3168509434,2721,Optimize interpreter performance,"## Summary
 - cache builtin function table to avoid map allocations
 - add environment pooling helpers for reusing Env objects
@@ -2277,17 +1979,6 @@ https://chatgpt.com/codex/tasks/task_e_686f30dd4a388320913ab7cc1a7310a0",OpenAI_
 
 ------
 https://chatgpt.com/codex/tasks/task_e_688986924e308320940d6a32f3905abf",OpenAI_Codex,1218621,tamnd,closed,2025-07-30T04:29:48Z,2025-07-30T04:30:23Z,2025-07-30T04:30:23Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/14800,"analysisWe need to classify whether the primary purpose is performance. The PR removes the body slice from Method in C# AST inspector, and regenerates golden AST files. This is about reducing memory usage? Removing body slice might reduce memory footprint, but is it performance? The description: ""Lowercase tags; drop method body"". The body slice likely contains method body AST nodes. Removing it reduces memory usage and maybe speed of parsing/generation. But is it about performance? The tags mention ""slow"" tests. They are updating golden AST files. The change is to drop method body to reduce memory usage? The description: ""remove the body slice from Method in the C# AST inspector"". That is a structural change. It might be to reduce memory usage or speed up AST generation. But the primary purpose? The PR is about dropping method body to reduce memory usage? The tags: ""slow"" tests. They are updating golden AST files. The change is not explicitly about performance, but about memory usage. The guidelines: performance-related PRs may contain keywords such as memory, optimization, leak, speed, perf, etc. The title: ""Lowercase tags; drop method body"". The body: ""remove the body slice from Method in the C# AST inspector"". That is a memory optimization. The guidelines mention memory as a keyword. So this is performance. So classify as 'performance'.assistantfinalperformance",NonPerformance
-3184492040,3879,Add peephole optimizations to VM,"## Summary
-- add peephole optimizer to remove redundant instructions and simplify arithmetic
-- document optimization pass in `runtime/vm` README
-
-## Testing
-- `go vet ./...`
-- `go test ./...`
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_685f5b33ff8483209f5c4718156d409f",OpenAI_Codex,1218621,tamnd,closed,2025-06-28T03:08:50Z,2025-06-30T03:19:28Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3879,"analysisWe need to classify as performance or non-performance. The PR title: ""Add peephole optimizations to VM"". Summary: add peephole optimizer to remove redundant instructions and simplify arithmetic. This is a performance improvement. So classification: performance.assistantfinalperformance",Performance
 3240460340,9410,Improve Scheme backend count builtin,"## Summary
 - optimize `count` builtin generation in Scheme compiler
 - regenerate Scheme machine outputs with streamlined helper usage
@@ -2404,12 +2095,6 @@ Fixes #23050.
 ---
 
 💬 Share your feedback on Copilot coding agent for the chance to win a $200 gift card! Click [here](https://survey.alchemer.com/s3/8343779/Copilot-Coding-agent) to start the survey.",Copilot,198982749,Copilot,closed,2025-06-28T02:32:50Z,2025-06-30T17:06:56Z,,262395224,https://api.github.com/repos/dotnet/maui,https://github.com/dotnet/maui/pull/30291,"analysisWe need to classify as performance or non-performance. The PR fixes garbage collection warning noise, reduces repeated logging, improves performance by avoiding repeated logging. The description says ""improves app performance by avoiding repeated logging"". But is that considered performance? The guidelines: performance-related PRs may contain keywords like latency, optimization, slow, memory, speed, etc. This PR is about reducing noise in logs, which may improve performance by reducing logging overhead. But does it contain performance keywords? It mentions ""performance"" in the impact section. But the guidelines say performance-related PRs may contain keywords such as latency, optimization, slow, react, wait, memory, speed, responsive, minor, tim, instant, latenc, leak, lag, respons, stuck, perf, compile-time-hog, fast, hang, throughput, performance, perform, or any other terms referring to how faster and efficiently software runs. The PR includes ""performance"" in the impact section. So it qualifies. Also the fix reduces repeated logging, which is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
-3078518733,9,Add FastMCP server,"## Summary
-- add `run_fastmcp.py` for running DeepSearchAgents via FastMCP
-- document running the new MCP server in README
-
-## Testing
-- `make test` *(fails: No route to host)*",OpenAI_Codex,11715013,lwyBZss8924d,open,2025-05-21T00:28:08Z,,,966679215,https://api.github.com/repos/lwyBZss8924d/DeepSearchAgents,https://github.com/lwyBZss8924d/DeepSearchAgents/pull/9,"analysisWe need to classify whether the primary purpose is performance. The PR adds a FastMCP server, presumably for performance. The title: ""Add FastMCP server"". The summary: add run_fastmcp.py for running DeepSearchAgents via FastMCP, document running the new MCP server in README. No mention of performance, but FastMCP likely stands for ""Fast Multi-Client Protocol"" or something. The PR is about adding a new server, maybe for performance. But the classification is based on keywords. The description doesn't contain performance keywords. But the title ""Add FastMCP server"" might imply performance. However, the instruction says performance-related PRs may contain keywords such as latency, optimization, slow, react, wait, memory, speed, responsive, minor, tim, instant, latenc, leak, lag, respons, stuck, perf, compile-time-hog, fast, hang, throughput, performance, perform, or any other terms referring to how faster and efficiently software runs. The word ""Fast"" is present. But ""Fast"" is a keyword. So it might be considered performance. But is ""Fast"" enough? The instruction says ""or any other terms referring to how faster and efficiently software runs."" ""Fast"" is a term. So likely performance. But we need to decide. The PR is adding a new server, maybe for performance. The title ""Add FastMCP server"" includes ""Fast"". That might be a performance improvement. But the body doesn't mention performance. But the presence of ""Fast"" might be enough. The guidelines: ""Performance-related pull requests may contain keywords such as... fast..."". So yes, ""fast"" is a keyword. So classify as performance.assistantfinalperformance",NonPerformance
 3018439207,20962,fix: parallelize Google Calendar API calls,"# Description
 
 This PR fixes a performance issue where Google Calendar API calls were running sequentially instead of concurrently. This was happening in two places:
@@ -2471,26 +2156,6 @@ Link to Devin run: https://app.devin.ai/sessions/d1e1527a71b34c3eb8b4ed7acd60660
 
 ------
 https://chatgpt.com/codex/tasks/task_e_6879c16a1c8483208ed805fdaf4bd6ef",OpenAI_Codex,1218621,tamnd,closed,2025-07-18T03:50:55Z,2025-07-18T03:51:20Z,2025-07-18T03:51:20Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/9480,"analysisWe need to classify whether the primary purpose is performance improvement. The PR title: ""Add constant string list inference to C backend"". Summary: ""improve C compiler by tracking string list constants, precompute len/count/min/max for constant string lists, regenerate golden outputs, update compilation status and task log"". This seems to be about compiler optimization: precomputing constants to improve performance? The summary says ""improve C compiler by tracking string list constants"". That could be performance improvement. But is the primary purpose performance? It might be about correctness or feature addition. The summary: ""precompute len/count/min/max for constant string lists"". That is an optimization to reduce runtime overhead. So likely performance. The keywords: ""improve"", ""precompute"", ""constant string lists"". The PR is about adding constant string list inference to C backend. That is a feature. But the summary says ""improve C compiler"". That could be performance improvement. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The PR is about adding a feature that may improve performance. But is the primary purpose performance? The title: ""Add constant string list inference to C backend"". That is a feature. The summary: ""improve C compiler by tracking string list constants"". That is a performance improvement. The test failures mention group_by_multi_join_sort, etc. But that might be due to golden outputs. The PR is about adding constant string list inference. That is a feature that may also improve performance. But the primary purpose is to add a feature, not necessarily performance. However, the summary explicitly says ""improve C compiler by tracking string list constants"". That is a performance improvement. The question: ""Given a text combining the title and body of a pull request, determine whether the primary purpose of the pull request is to improve performance."" So we need to decide if it's performance. The presence of ""improve"" and ""precompute"" suggests performance. The keywords list includes ""performance"". The PR is about precomputing constants to reduce runtime overhead. That is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
-3171897266,2551,[alpha_factory] Async PolicyAgent tools,"## Summary
-- audit PolicyAgent methods
-- convert I/O heavy operations to async
-
-## Testing
-- `python scripts/check_python_deps.py`
-- `python check_env.py --auto-install`
-- `pytest -q` *(fails: 44 errors)*
-- `pre-commit run --files alpha_factory_v1/backend/agents/policy_agent.py` *(fails: proto-verify, verify-requirements-lock)*
-
-------
-https://chatgpt.com/codex/tasks/task_e_685a9c9c37c48333a7a0d6a45cf0d330",OpenAI_Codex,24208299,MontrealAI,closed,2025-06-24T12:52:53Z,2025-06-24T12:54:48Z,2025-06-24T12:54:48Z,922805069,https://api.github.com/repos/MontrealAI/AGI-Alpha-Agent-v0,https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2551,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""[alpha_factory] Async PolicyAgent tools"". Summary: audit PolicyAgent methods, convert I/O heavy operations to async. That is about making I/O heavy operations async, which can improve performance by not blocking. But is the primary purpose performance? It is about async conversion, which is about performance improvement. The description mentions ""convert I/O heavy operations to async"". That is performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
-3177404139,3321,Switch MCP server to VM runtime,"## Summary
-- use `runtime/vm` instead of the interpreter when MCP executes source code
-
-## Testing
-- `go test ./...`
-
-------
-https://chatgpt.com/codex/tasks/task_e_685c9f81300883208f1983dbc49b04c0",OpenAI_Codex,1218621,tamnd,closed,2025-06-26T01:22:20Z,2025-06-26T01:23:37Z,2025-06-26T01:23:37Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3321,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""Switch MCP server to VM runtime"". Summary: use runtime/vm instead of interpreter when MCP executes source code. This likely improves performance by using VM runtime instead of interpreter. So it's performance. No other context. So classification: performance.assistantfinalperformance",Performance
 3159661875,183,Refactor REPL to eliminate temporary file usage,"The REPL implementation was using a ""huge hack"" of creating temporary files to conform with the existing compilation interface that expects a `BufRead` object. This approach was inefficient and unnecessary.
 
 ## Changes Made
@@ -2538,17 +2203,6 @@ Fixes #8.
 ---
 
 💬 Share your feedback on Copilot coding agent for the chance to win a $200 gift card! Click [here](https://survey.alchemer.com/s3/8343779/Copilot-Coding-agent) to start the survey.",Copilot,198982749,Copilot,closed,2025-06-19T09:36:55Z,2025-06-19T10:33:14Z,2025-06-19T10:33:14Z,445862991,https://api.github.com/repos/tomhrr/cosh,https://github.com/tomhrr/cosh/pull/183,"analysisWe need to classify as performance or non-performance. The PR is about refactoring REPL to eliminate temporary file usage, improving performance by removing filesystem ops. It explicitly mentions performance improvement. So classification: performance.assistantfinalperformance",Performance
-3151769530,282,Fix unsupported conversion caching,"## Summary
-- cache missing conversions inside `Converter.convert`
-- document caching behavior in `changelog.md`
-
-## Testing
-- `mvn -q test` *(fails: mvn not found)*
-
-------
-https://chatgpt.com/codex/tasks/task_b_6850c71728cc832a94d5dc3ec0829fc8",OpenAI_Codex,5373774,jdereg,closed,2025-06-17T01:41:48Z,2025-06-17T01:41:57Z,2025-06-17T01:41:57Z,12670630,https://api.github.com/repos/jdereg/java-util,https://github.com/jdereg/java-util/pull/282,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Fix unsupported conversion caching"". Summary: ""cache missing conversions inside Converter.convert - document caching behavior in changelog.md"". This is about caching missing conversions. That is a performance improvement? Caching can improve performance by avoiding repeated work. But the description says ""Fix unsupported conversion caching"". It might be about caching missing conversions to avoid repeated errors? The change is about caching missing conversions inside Converter.convert. That likely improves performance by caching missing conversions to avoid repeated expensive operations. But is it primarily performance? It might be a bug fix: caching missing conversions to avoid repeated errors. But caching is a performance improvement. The description: ""cache missing conversions inside Converter.convert"". That is a performance improvement. The PR is about caching missing conversions. That is a performance improvement. So classify as 'performance'.
-
-Check if any other context: The PR is about caching missing conversions. That is a performance improvement. So answer: performance.assistantfinalperformance",Performance
 2889429365,230,Fix: SeleniumScrapingTool initializes Chrome WebDriver only when needed,"# Fix: SeleniumScrapingTool initializes Chrome WebDriver only when needed
 
 Fixes #2258. Implements lazy initialization of the Chrome WebDriver in SeleniumScrapingTool to prevent unwanted browser windows and memory leaks.
@@ -2677,16 +2331,6 @@ with tempfile.TemporaryDirectory() as temp_dir:
 ---
 
 💡 You can make Copilot smarter by setting up custom instructions, customizing its development environment and configuring Model Context Protocol (MCP) servers. Learn more [Copilot coding agent tips](https://gh.io/copilot-coding-agent-tips) in the docs.",Copilot,198982749,Copilot,open,2025-07-02T08:34:17Z,,,263364731,https://api.github.com/repos/mlco2/codecarbon,https://github.com/mlco2/codecarbon/pull/883,"analysisWe need to classify as 'performance' or 'non-performance'. The PR clearly addresses performance overhead due to psutil calls, adding a parameter to bypass psutil, conditional imports, etc. It's about performance improvement. So classification: 'performance'.assistantfinalperformance",Performance
-3170148477,2781,Implement folding of pure calls in VM,"## Summary
-- fold pure function calls during VM compilation
-- store constant let bindings in the compiler environment
-- update golden IR outputs to reflect constant folding
-
-## Testing
-- `go test ./...`
-
-------
-https://chatgpt.com/codex/tasks/task_e_685a1f658ca08320955b305d838bb813",OpenAI_Codex,1218621,tamnd,closed,2025-06-24T03:54:17Z,2025-06-24T03:54:28Z,2025-06-24T03:54:28Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2781,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Implement folding of pure calls in VM"". Summary: fold pure function calls during VM compilation, store constant let bindings in compiler environment, update golden IR outputs to reflect constant folding. This is about constant folding, which is an optimization. It improves performance by reducing runtime overhead. So it's a performance-related PR. So classification: 'performance'.assistantfinalperformance",Performance
 3188858394,834,feat: implement async notification and telemetry system (Phase 1-3),"## Summary
 
 This PR implements the first three phases of the async notification and telemetry system as outlined in #833. It introduces a non-blocking event bus architecture that decouples error reporting from notification/telemetry processing, preventing any blocking operations during error handling.
@@ -2855,26 +2499,6 @@ benny@cal.com
 - `npm run lint`
 - `npm run tsc`
 - `npm run test` *(fails: run aborted due to environment limits)*",OpenAI_Codex,204765,danielweinmann,closed,2025-05-28T01:22:40Z,2025-05-28T01:26:48Z,2025-05-28T01:26:48Z,463116412,https://api.github.com/repos/seasonedcc/remix-forms,https://github.com/seasonedcc/remix-forms/pull/367,"analysisWe need to classify as performance or non-performance. The PR title: ""Split slow e2e tests"". Summary: split several end-to-end test files into separate JS and no-JS variants to speed up parallel Playwright runs. This is about speeding up tests, improving performance. So classification: performance.assistantfinalperformance",Performance
-3125799000,628,test: box rebuild performance test,"## Summary
-- add performance benchmark for rebuilding a `Box` with style overrides
-
-## Testing
-- `flutter test packages/mix/test/bechmarks/widget_build_test.dart` *(fails: `flutter` not found)*
-
-------
-https://chatgpt.com/codex/tasks/task_e_684318723bac832bbc92ef8e817e5301",OpenAI_Codex,62367544,tilucasoli,closed,2025-06-06T20:28:54Z,2025-06-06T20:35:53Z,,378459401,https://api.github.com/repos/btwld/mix,https://github.com/btwld/mix/pull/628,"analysisWe need to classify as performance or non-performance. The PR title: ""test: box rebuild performance test"". Summary: add performance benchmark for rebuilding a Box with style overrides. So it's about performance benchmark. So classification: performance.assistantfinalperformance",Performance
-3114659416,1500,[alpha_factory] inline wasm assets,"## Summary
-- inline `pyodide.asm.wasm` and `wasm-gpt2.tar` during manual build
-- decode embedded WASM in runtime loader
-- test that `window.PYODIDE_WASM_BASE64` exists in the built UI
-
-## Testing
-- `python check_env.py --auto-install`
-- `pytest -q` *(fails: ValueError: Duplicated timeseries in CollectorRegistry)*
-- `pytest tests/test_wasm_base64.py -q`
-
-------
-https://chatgpt.com/codex/tasks/task_e_683f210c617c8333933deaf6d9902bf9",OpenAI_Codex,24208299,MontrealAI,closed,2025-06-03T16:27:50Z,2025-06-03T16:27:57Z,2025-06-03T16:27:57Z,922805069,https://api.github.com/repos/MontrealAI/AGI-Alpha-Agent-v0,https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1500,"analysisWe need to classify as performance or non-performance. The PR title: ""[alpha_factory] inline wasm assets"". Summary: inline wasm assets, decode embedded WASM in runtime loader, test that window.PYODIDE_WASM_BASE64 exists. This is about bundling wasm assets inline, likely to reduce network requests, improve load performance. But is the primary purpose to improve performance? It seems to inline wasm assets to reduce load time, but the main goal is to embed assets. That is a performance improvement. The keywords: ""inline"" might reduce network latency. But the description doesn't explicitly mention performance. However, the action of inlining assets is a performance optimization. The classification: performance.assistantfinalperformance",Performance
 3186329921,3992,Optimize runtime/vm,"## Summary
 - const fold more list operations
 - regenerate tpch IRs
@@ -3361,12 +2985,6 @@ Rewrote sitemap XML parsing from JavaScript to Rust to improve performance, whil
 <!-- End of auto-generated description by cubic. -->
 
 ",Devin,158243242,devin-ai-integration[bot],closed,2025-07-24T19:30:35Z,2025-07-24T22:02:48Z,2025-07-24T22:02:48Z,787076358,https://api.github.com/repos/mendableai/firecrawl,https://github.com/mendableai/firecrawl/pull/1840,"analysisWe need to classify as 'performance' or 'non-performance'. The PR is rewriting XML parsing from JS to Rust to improve performance. It explicitly states ""improve performance of sitemap parsing operations"". So it's performance.assistantfinalperformance",Performance
-3098901968,19979,Fix net server noDelay handling,"## Summary
-- add Node.js test `test-net-server-nodelay`
-- call `Socket.setNoDelay()` when server `noDelay` option is enabled
-
-## Testing
-- `bun bd --silent node:test test-net-server-nodelay` *(fails: missing webkit build files)*",OpenAI_Codex,709451,Jarred-Sumner,closed,2025-05-29T01:22:52Z,2025-05-29T05:14:57Z,,357728969,https://api.github.com/repos/oven-sh/bun,https://github.com/oven-sh/bun/pull/19979,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""Fix net server noDelay handling"". Body: adds test, calls Socket.setNoDelay() when server noDelay option is enabled. This is about network performance? Setting noDelay disables Nagle's algorithm, improving latency. It's a performance improvement. The keywords: noDelay, Socket.setNoDelay, network. It's about performance. So classify as 'performance'.assistantfinalperformance",Performance
 3226639901,3298,[alpha_factory] streamline npm caching,"## Summary
 - use `setup-node` caching in Windows smoke job
 
@@ -3828,16 +3446,6 @@ These optimizations provide a solid foundation for future enhancements and posit
 
 ------
 https://chatgpt.com/codex/tasks/task_e_686e10f2c84c832d892afecca677f3cf",OpenAI_Codex,61864357,MihaiCristianCondrea,closed,2025-07-09T06:59:29Z,2025-07-09T07:00:43Z,2025-07-09T07:00:43Z,600355571,https://api.github.com/repos/MihaiCristianCondrea/Smart-Cleaner-for-Android,https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/132,"analysisWe need to classify the pull request as performance or non-performance. The title: ""Avoid duplicate grouping on main thread"". Summary: compute duplicate groups during scanning, keep duplicate groups in scanner state, access computed groups in tabs UI, reset groups when leaving analyze screen. This seems to be about avoiding duplicate grouping on main thread, likely to improve performance by moving computation off main thread. The description mentions scanning, grouping, UI. The PR likely improves performance by moving grouping off main thread. The keywords: ""main thread"" indicates performance. The summary: compute duplicate groups during scanning, keep groups in scanner state, access computed groups in UI, reset groups when leaving analyze screen. This is about performance optimization. So classification: performance.assistantfinalperformance",Performance
-3225673491,8163,Fix slow build scripts tests,"## Summary
-- mark `compile_tpch_go.go` as slow
-- add a small `doc.go` so the scripts package has buildable source
-
-## Testing
-- `go test ./scripts`
-- `go test ./...`
-
-------
-https://chatgpt.com/codex/tasks/task_e_6872acd4009c83208ca84d6c41cc902f",OpenAI_Codex,1218621,tamnd,closed,2025-07-12T18:52:20Z,2025-07-12T18:52:32Z,2025-07-12T18:52:32Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/8163,"analysisWe need to classify as performance or non-performance. The PR title: ""Fix slow build scripts tests"". Summary: mark compile_tpch_go.go as slow, add doc.go so scripts package has buildable source. This is about build scripts tests, marking a file as slow. It's about test performance? The description: ""Fix slow build scripts tests"". That indicates performance improvement. The keywords: slow, performance. So classification: performance.assistantfinalperformance",NonPerformance
 3225662609,333,Improve asciicast clear offset caching,"## Summary
 - track `lastClearOffset` in `SessionInfo`
 - initialize `lastClearOffset` on session creation
@@ -3873,35 +3481,6 @@ Changes:
 
 Requested by: Aaron (AJ) Steers (@aaronsteers)
 Link to Devin run: https://app.devin.ai/sessions/9aebdd8a2c98418aaa4f1ec281c89574",Devin,158243242,devin-ai-integration[bot],closed,2025-03-29T00:30:02Z,2025-04-06T14:44:21Z,,752526884,https://api.github.com/repos/airbytehq/PyAirbyte,https://github.com/airbytehq/PyAirbyte/pull/643,"analysisWe need to classify as performance or non-performance. The PR title: ""feat(cache): Implement threaded stream finalization"". Body: ""This PR implements threaded stream finalization to improve performance for sources with many streams and provide better resilience against process interruptions."" It mentions performance improvement. So classification: performance.assistantfinalperformance",Performance
-3126110678,829,k8s(resources): tune workloads and add pedrobot db,"## Summary
-- tune CPU & memory requests across infrastructure and apps
-- document resource profiles
-- add MongoDB StatefulSet for pedrobot
-
-## Testing
-- `yamllint -c .yamllint.yml <files>` *(warnings about document start and comments)*
-- `kustomize build --enable-helm k8s/applications/web/pedrobot`
-- `kustomize build --enable-helm k8s/applications/web/babybuddy`
-- `kustomize build --enable-helm k8s/applications/tools/whoami`
-- `kustomize build --enable-helm k8s/applications/tools/unrar`
-- `kustomize build --enable-helm k8s/applications/tools/it-tools`
-- `kustomize build --enable-helm k8s/applications/network/omada`
-- `kustomize build --enable-helm k8s/applications/media/whisperasr`
-- `kustomize build --enable-helm k8s/applications/media/sabnzbd`
-- `kustomize build --enable-helm k8s/applications/media/jellyseerr`
-- `kustomize build --enable-helm k8s/applications/media/jellyfin`
-- `kustomize build --enable-helm k8s/applications/media/immich/immich-server`
-- `kustomize build --enable-helm k8s/applications/media/immich/immich-ml`
-- `kustomize build --enable-helm k8s/applications/automation/mqtt`
-- `kustomize build --enable-helm k8s/applications/ai/karakeep`
-- `kustomize build --enable-helm k8s/applications/ai/openwebui`
-- `kustomize build --enable-helm k8s/infrastructure/controllers/argocd` *(failed: helm repo inaccessible)*
-- `kustomize build --enable-helm k8s/applications/media/immich/immich-redis` *(failed: helm repo inaccessible)*
-- `kustomize build --enable-helm k8s/infrastructure/storage/longhorn` *(failed: helm repo inaccessible)*
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_68437705b0848322ab44b13fcb63a27c",OpenAI_Codex,39008574,theepicsaxguy,closed,2025-06-06T23:38:47Z,2025-06-06T23:53:29Z,2025-06-06T23:53:29Z,933720213,https://api.github.com/repos/theepicsaxguy/homelab,https://github.com/theepicsaxguy/homelab/pull/829,"analysisWe need to classify as performance or non-performance. The PR title: ""k8s(resources): tune workloads and add pedrobot db"". Summary: tune CPU & memory requests across infrastructure and apps, document resource profiles, add MongoDB StatefulSet for pedrobot. This is about resource tuning, which is performance optimization. It may be considered performance. The keywords: tune, CPU & memory requests, resource profiles. That is performance. So classification: performance.assistantfinalperformance",NonPerformance
 3240738542,38,Optimize recursive dns bruteforce method,"Refactor `_recursive_dnsx_bruteforce` method to enhance reliability, performance, and resource management.
 
 The previous implementation suffered from race conditions due to shared file I/O, inefficient memory usage from duplicate data, and lacked robust error handling and progress tracking. This refactor addresses these issues by introducing thread-safe operations, proper deduplication, adaptive threading, and comprehensive resource management.",Cursor,100861363,Bandit-HaxUnit,open,2025-07-17T19:52:50Z,,,465787727,https://api.github.com/repos/Bandit-HaxUnit/haxunit,https://github.com/Bandit-HaxUnit/haxunit/pull/38,"analysisWe need to classify as performance or non-performance. The PR title: ""Optimize recursive dns bruteforce method"". Body: refactor to enhance reliability, performance, resource management. It mentions performance improvements: race conditions, memory usage, thread safety, deduplication, adaptive threading. So it's performance. So label 'performance'.assistantfinalperformance",Performance
@@ -4317,16 +3896,6 @@ https://chatgpt.com/codex/tasks/task_e_68835ebfe1188320b1afcb083715ac75",OpenAI_
 
 ## Testing
 - `dotnet test --no-build` *(fails: `dotnet: command not found`)*",OpenAI_Codex,2297442,wieslawsoltes,closed,2025-05-20T11:09:56Z,2025-05-20T11:10:49Z,,792160692,https://api.github.com/repos/wieslawsoltes/Xaml.Behaviors,https://github.com/wieslawsoltes/Xaml.Behaviors/pull/102,"analysisWe need to classify whether the primary purpose of the PR is to improve performance. The PR adds a source generator to compile scripts at build time. That likely improves performance by reducing runtime compilation overhead. The description: ""Add ExecuteCompiledScriptAction source generator"" and ""compile scripts at build time"". That is a performance improvement. So classification: 'performance'.assistantfinalperformance",NonPerformance
-3225389334,353,Implement chunked bucket ConcurrentList,"## Summary
-- rewrite `ConcurrentList` to use chunked atomic buckets
-- document the new approach in the user guide
-- note the change in `changelog.md`
-
-## Testing
-- ❌ `mvn -q -Dtest=*ConcurrentTest* test` *(failed: mvn not installed)*
-
-------
-https://chatgpt.com/codex/tasks/task_b_687266251fa4832aaa60efb70188caf7",OpenAI_Codex,5373774,jdereg,closed,2025-07-12T13:54:39Z,2025-07-12T13:54:50Z,2025-07-12T13:54:50Z,12670630,https://api.github.com/repos/jdereg/java-util,https://github.com/jdereg/java-util/pull/353,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Implement chunked bucket ConcurrentList"". Summary: rewrite ConcurrentList to use chunked atomic buckets, document new approach, note change in changelog. This seems like a performance improvement: using chunked atomic buckets likely improves concurrency/performance. The description mentions performance? It doesn't explicitly mention performance, but the change is about rewriting to use chunked atomic buckets, which is likely a performance improvement. The guidelines: performance-related PRs may contain keywords like optimization, speed, etc. This PR doesn't contain those keywords. But the content indicates a rewrite for performance. The guidelines say ""Performance-related pull requests may contain keywords such as memory, optimization, leak, speed, perf, stuck, lag, fast, respons, slow, latency, performance, latenc, hang, tim, throughput, compile-time-hog, instant, responsive, react, perform, wait, minor, or any other terms referring to how faster and efficiently software runs."" The PR doesn't contain those keywords. But the content is about rewriting to use chunked atomic buckets, which is likely a performance improvement. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The guidelines: if it contains those keywords, classify as performance. If not, maybe non-performance. But the content indicates a performance improvement. The guidelines say ""Performance-related pull requests may contain keywords such as... or any other terms referring to how faster and efficiently software runs."" It doesn't say that if it doesn't contain those keywords, it's non-performance. But the guidelines are for classification. The PR is about rewriting to use chunked atomic buckets, which is likely a performance improvement. But the guidelines mention that performance-related PRs may contain keywords. It doesn't say that if they don't contain keywords, they are not performance. But the guidelines are for classification. We need to decide. The PR is about concurrency and chunked atomic buckets, which likely improves performance. So we should classify as 'performance'. The guidelines: ""Performance-related pull requests may contain keywords such as memory, optimization, leak, speed, perf, stuck, lag, fast, respons, slow, latency, performance, latenc, hang, tim, throughput, compile-time-hog, instant, responsive, react, perform, wait, minor, or any other terms referring to how faster and efficiently software runs."" The PR doesn't contain those keywords. But the content is about rewriting to use chunked atomic buckets. That is a performance improvement. The guidelines are not strict; they say ""may contain keywords"". So it's possible to classify as performance even if not containing keywords. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The PR is about rewriting to use chunked atomic buckets, which is likely a performance improvement. So classification: performance.assistantfinalperformance",NonPerformance
 3140927195,2167,fix: add memory leak fixes for Maps and MobX reactions,"# Memory Leak Fixes for Maps and MobX Reactions
 
 ## Summary
@@ -4406,18 +3975,6 @@ https://chatgpt.com/codex/tasks/task_e_684a13e49de083298a30fd95bd6c063f
 - **Chores**
   - Updated automated workflows to utilize the new parallel test execution scripts for running unit tests.
 <!-- end of auto-generated comment: release notes by coderabbit.ai -->",OpenAI_Codex,5108069,elazarg,closed,2025-06-11T23:58:56Z,2025-06-12T15:47:24Z,,137548993,https://api.github.com/repos/vbpf/prevail,https://github.com/vbpf/prevail/pull/892,"analysisWe need to classify as performance or non-performance. The PR adds parallel test runner to run tests concurrently, improving test execution speed. That is performance improvement. So label 'performance'.assistantfinalperformance",Performance
-3216682526,6920,Lua compiler improvements,"## Summary
-- make the Lua compiler inline append operations when a list literal is given
-- regenerate Lua machine outputs with updated compiler
-
-## Testing
-- `go test -tags slow ./compiler/x/lua -run TestLuaCompiler_ValidPrograms -count=1`
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_686ea73dc9208320b8742e6cc573b62c",OpenAI_Codex,1218621,tamnd,closed,2025-07-09T17:41:35Z,2025-07-09T17:41:48Z,2025-07-09T17:41:47Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/6920,"analysisWe need to classify as performance or non-performance. The PR title: ""Lua compiler improvements"". Summary: ""make the Lua compiler inline append operations when a list literal is given"" and ""regenerate Lua machine outputs with updated compiler"". This seems like a compiler improvement, but is it performance? Inlining append operations could improve performance of generated code. But the description is about compiler changes, not runtime performance. However, the improvement is about making the compiler inline append operations, which could reduce runtime overhead. That is a performance improvement. But the question: ""primary purpose of the pull request is to improve performance."" The PR is about compiler improvements, but the change is to inline append operations, which likely improves runtime performance. The summary also mentions ""regenerate Lua machine outputs with updated compiler"". That is more about updating outputs. The main change is inlining append operations. That is a performance optimization. So classify as 'performance'.
-
-Thus answer: performance.assistantfinalperformance",NonPerformance
 3239733181,669,Fix unresponsive message display,Improve responsiveness of the message display and artifact viewer on mobile devices.,Cursor,666683,swuecho,closed,2025-07-17T14:06:44Z,2025-07-17T14:07:47Z,2025-07-17T14:07:47Z,615684995,https://api.github.com/repos/swuecho/chat,https://github.com/swuecho/chat/pull/669,"analysisWe need to classify as performance or non-performance. The PR title: ""Fix unresponsive message display"". Body: ""Improve responsiveness of the message display and artifact viewer on mobile devices."" This is about responsiveness, performance. So classification: performance.assistantfinalperformance",Performance
 3167979829,1633,Optimize VSCode extension bundle size by adding .js extensions to core imports,"This PR optimizes the VSCode extension bundle by converting all core module imports to use explicit `.js` extensions, enabling better tree-shaking and more efficient bundling.
 
@@ -4678,118 +4235,6 @@ Fixes #49415.
 ---
 
 💡 You can make Copilot smarter by setting up custom instructions, customizing its development environment and configuring Model Context Protocol (MCP) servers. Learn more [Copilot coding agent tips](https://gh.io/copilot-coding-agent-tips) in the docs.",Copilot,198982749,Copilot,closed,2025-06-16T20:33:51Z,2025-06-25T14:43:43Z,,63984307,https://api.github.com/repos/dotnet/sdk,https://github.com/dotnet/sdk/pull/49424,"analysisWe need to classify as 'performance' or 'non-performance'. The PR title: ""Add EnableDefaultItems=false optimization for restore operations"". Body describes performance improvement: reduce restore evaluation time. So it's performance. So output 'performance'.assistantfinalperformance",Performance
-3212315483,672,Add speed index to models,Still need to feed the model values with relevant ones,Cursor,8428699,yannbu,closed,2025-07-08T12:16:04Z,2025-07-09T15:07:00Z,2025-07-09T15:07:00Z,899127822,https://api.github.com/repos/WorkflowAI/WorkflowAI,https://github.com/WorkflowAI/WorkflowAI/pull/672,"analysisWe need to classify whether the primary purpose is performance. The title: ""Add speed index to models"". Body: ""Still need to feed the model values with relevant ones"". The title mentions ""speed index"" which could be a metric for performance. But the body says ""Still need to feed the model values with relevant ones"". That seems like adding a new field to models, maybe for performance metrics. The question: is the primary purpose to improve performance? The phrase ""speed index"" suggests a performance metric. But is the PR adding a new field to store speed index? That could be for performance measurement, but not necessarily improving performance. The instruction: performance-related PRs may contain keywords such as memory, optimization, leak, speed, perf, etc. The title contains ""speed index"". That is a keyword. So likely performance. The body doesn't mention improvement, but the title is enough. So classify as 'performance'.assistantfinalperformance",NonPerformance
-3238869981,984,"[WIP] Streaming still not working. Causing slow responses for something like 'write a report' #981
-Open
-@mzazakeith
-Description
-mzazakeith
-opened 3 hours ago
-Description
-With the latest version of PraisonAI. straming is still not real time. When in verbose mo...","Thanks for asking me to work on this. I will get started on it and keep this PR's description up to date as I form a plan and make progress.
-
-Original description:
-
-> Streaming still not working. Causing slow responses for something like 'write a report' #981
-> Open
-> @mzazakeith
-> Description
-> mzazakeith
-> opened 3 hours ago
-> Description
-> With the latest version of PraisonAI. straming is still not real time. When in verbose mode you can see the internal logs of the tool streaming the output. But as a use the final output we get is an accumulation of the internal streams.
-> 
-> Environment
-> Provider (select one):
-> 
-> Anthropic
-> 
-> OpenAI
-> 
-> Google Vertex AI
-> 
-> AWS Bedrock
-> 
-> Other:
-> PraisonAI version: latest
-> Operating System:
-> Full Code
-> from praisonaiagents import Agent
-> 
-> agent = Agent(
->     instructions=""You are a helpful assistant"",
->     llm=""gemini/gemini-2.0-flash"",
->     self_reflect=False,
->     verbose=False,
->     stream=True
-> )
-> 
-> for chunk in agent.start(""Write a report on about the history of the world""):
->     print(chunk, end="""", flush=True) 
-> or
-> 
-> from praisonaiagents import Agent
-> 
-> agent = Agent(
->     instructions=""You are a helpful assistant"",
->     llm=""gemini/gemini-2.0-flash"",
->     self_reflect=False,
->     verbose=True,
->     stream=True
-> )
-> 
-> result = agent.start(""Write a report on about the history of the world"")
-> print(result)
-> Steps to Reproduce
-> intall the lib
-> copy the code above
-> run them and observe
-> Expected Behavior
-> Instead of streaming the internal response that the user does not see we should stream realtime to the user so as to avoid unnecessary latency and improve user experience
-> 
-> Actual Behavior
-> Streaming happens internally we do not get the stream in the final response.
-> 
-> Activity
-> 
-> mzazakeith
-> added 
-> bug
-> Something isn't working
->  3 hours ago
-> MervinPraison
-> MervinPraison commented 37 minutes ago
-> MervinPraison
-> 37 minutes ago
-> Owner
-> @claude review this issue and do a detailed analysis and fix this if the existing code doesn't have the solution implemented. Making sure it has backward compatibility, no existing features removed. After making those changes, again review the applied changes. Use @web to search if you dont know any information or to find the latest documentation or to find the latest version. Run the code if you think you need to run it to test it. Minimal code change to start with if required any changes. Please create a PR using gh tool with your changes.
-> 
-> MervinPraison
-> MervinPraison commented 32 minutes ago
-> MervinPraison
-> 32 minutes ago
-> Owner
-> @claude make this to work
-> 
-> from praisonaiagents import Agent
-> 
-> agent = Agent(
->     instructions=""You are a helpful assistant"",
->     llm=""gemini/gemini-2.0-flash"",
->     self_reflect=False,
->     verbose=False,
->     stream=True
-> )
-> 
-> for chunk in agent.start(""Write a report on about the history of the world""):
->     print(chunk, end="""", flush=True)
-
-
-
-<!-- START COPILOT CODING AGENT TIPS -->
----
-
-💡 You can make Copilot smarter by setting up custom instructions, customizing its development environment and configuring Model Context Protocol (MCP) servers. Learn more [Copilot coding agent tips](https://gh.io/copilot-coding-agent-tips) in the docs.",Copilot,198982749,Copilot,closed,2025-07-17T09:37:55Z,2025-07-24T00:55:54Z,,774497032,https://api.github.com/repos/MervinPraison/PraisonAI,https://github.com/MervinPraison/PraisonAI/pull/984,"analysisWe need to classify whether the primary purpose of the PR is to improve performance. The PR title: ""[WIP] Streaming still not working. Causing slow responses for something like 'write a report' #981"". The description mentions streaming not real time, causing slow responses. The issue is about streaming and latency. The PR likely addresses performance by improving streaming to reduce latency. The keywords: slow, streaming, latency, performance. So it's performance. So label 'performance'.assistantfinalperformance",Performance
 3125710825,1936,feat: update parts channel capacity from 1000 to 2500,"Updates the parts channel capacity from 1000 to 2500 to prevent blocking during processing of large blocks (128MB).
 
 ## Changes
@@ -4817,20 +4262,6 @@ Fixes #1923.
 ---
 
 💡 You can make Copilot smarter by setting up custom instructions, customizing its development environment and configuring Model Context Protocol (MCP) servers. Learn more [Copilot coding agent tips](https://gh.io/copilot-coding-agent-tips) in the docs.",Copilot,198982749,Copilot,closed,2025-06-06T19:42:55Z,2025-06-11T14:42:14Z,2025-06-11T14:42:14Z,221931137,https://api.github.com/repos/celestiaorg/celestia-core,https://github.com/celestiaorg/celestia-core/pull/1936,"analysisWe need to classify as performance or non-performance. The PR title: ""feat: update parts channel capacity from 1000 to 2500"". Body: mentions preventing blocking during processing of large blocks, capacity increase to avoid blocking, simplifying consensus flow and improving performance for large blocks. Keywords: blocking, performance, capacity, large blocks. This is clearly performance improvement. So label 'performance'.assistantfinalperformance",Performance
-3070780242,673,Fix ReleaseRef build step,avoid building the whole solution for ReleaseRef,OpenAI_Codex,853584,pardeike,closed,2025-05-17T13:33:57Z,2025-05-17T14:11:03Z,2025-05-17T14:11:03Z,78002587,https://api.github.com/repos/pardeike/Harmony,https://github.com/pardeike/Harmony/pull/673,"analysisWe need to classify whether the primary purpose is to improve performance. The PR title: ""Fix ReleaseRef build step avoid building the whole solution for ReleaseRef"". Body not provided. The title indicates it's about build step, avoiding building whole solution for ReleaseRef. That is about build performance? It might be about build speed, but the description says ""avoid building the whole solution for ReleaseRef"". That is a build optimization, likely to reduce build time. That is performance improvement. So classify as 'performance'.assistantfinalperformance",NonPerformance
-3170126845,2776,Enable constant folding of pure functions in VM,"## Summary
-- support compile-time evaluation of pure functions in the VM compiler
-- register functions in the type environment so they can be folded
-- store constant values from `let` statements for later folding
-- update IR golden files for folded calls
-
-## Testing
-- `go test ./tests/vm -run TestVM_IR -count=1`
-- `go test ./...`
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_685a1abe71b0832097a30b7c27808534",OpenAI_Codex,1218621,tamnd,closed,2025-06-24T03:42:50Z,2025-06-24T04:09:08Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2776,"analysisWe need to classify as performance or non-performance. The PR title: ""Enable constant folding of pure functions in VM"". Summary: compile-time evaluation of pure functions, register functions, store constant values, update IR golden files. This is about compile-time optimization, constant folding. That is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
 3272405225,7644,Optimize homepage post loading by eliminating N+1 queries for user data,"## Problem
 
 The homepage post loading was suffering from a classic N+1 query problem when fetching user data (post owners and contributors). For each post displayed on the homepage, the system was making individual database queries to fetch user information, resulting in:
@@ -4914,71 +4345,6 @@ Fixes #7593
 ---
 
 💡 You can make Copilot smarter by setting up custom instructions, customizing its development environment and configuring Model Context Protocol (MCP) servers. Learn more [Copilot coding agent tips](https://gh.io/copilot-coding-agent-tips) in the docs.",Copilot,198982749,Copilot,open,2025-07-29T07:05:23Z,,,126178683,https://api.github.com/repos/halo-dev/halo,https://github.com/halo-dev/halo/pull/7644,"analysisWe need to classify as 'performance' or 'non-performance'. The PR title: ""Optimize homepage post loading by eliminating N+1 queries for user data"". The body describes performance improvement, reducing queries, performance impact. So it's performance.assistantfinalperformance",Performance
-3140239245,1731,feat: Add feature gating for halo2 imports in SDK and CLI crates,"## Feature Gating for Halo2 Imports - INT-4112
-
-This PR implements feature gating for all halo2 imports in the openvm-sdk and openvm-cli crates, making EVM proving/verification capabilities optional. This allows users who only need STARK functionality to compile without pulling in halo2 dependencies, improving compile times and reducing binary size.
-
-### Changes Made
-
-#### SDK Dependencies (crates/sdk/Cargo.toml)
-- Made `snark-verifier` and `snark-verifier-sdk` optional dependencies
-- Removed forced `static-verifier` feature from `openvm-native-recursion`
-- Updated `evm-prove` feature definition to properly include halo2 dependencies:
-  - `openvm-native-recursion/evm-prove`
-  - `openvm-native-recursion/static-verifier`
-  - `dep:snark-verifier`
-  - `dep:snark-verifier-sdk`
-
-#### Feature Gating in SDK Source Files
-- **lib.rs**: Added `#[cfg(any(feature = ""evm-prove"", feature = ""evm-verify""))]` to `agg_keygen` function
-- **keygen/mod.rs**: Feature-gated `Halo2ProvingKey` struct and related imports, added conditional compilation to `AggProvingKey.halo2_pk` field
-- **keygen/static_verifier.rs**: Feature-gated entire module with halo2-related functionality
-- **types.rs**: Added feature gates to all EVM-related types (`EvmHalo2Verifier`, `EvmProof`, etc.)
-- **fs.rs**: Feature-gated halo2 file I/O functions and imports
-
-#### CLI Updates (crates/cli/Cargo.toml)
-- Removed `evm-verify` from default features
-- Default features now: `[""parallel"", ""jemalloc"", ""bench-metrics""]`
-
-#### CLI Source Updates (crates/cli/src/util.rs)
-- Feature-gated `read_agg_halo2_pk_from_file` import
-- Feature-gated `read_default_agg_pk()` function
-
-### Verification
-
-All compilation scenarios have been tested and pass successfully:
-
-**SDK Crate:**
-- ✅ `cargo check --no-default-features` (STARK-only compilation)
-- ✅ `cargo check --features evm-prove` (EVM proving enabled)
-- ✅ `cargo check --features evm-verify` (EVM verification enabled)
-
-**CLI Crate:**
-- ✅ `cargo check --no-default-features` (STARK-only compilation)  
-- ✅ `cargo check --features evm-verify` (EVM verification enabled)
-
-### Impact
-
-- **STARK-only users**: Can now compile without halo2 dependencies, resulting in faster compile times and smaller binaries
-- **EVM users**: No breaking changes - existing functionality remains available when EVM features are enabled
-- **Backward compatibility**: Maintained through proper feature flag design
-
-### Link to Devin run
-https://app.devin.ai/sessions/8bb6a0cf896e4b98972d872fffcb68bd
-
-**Requested by:** Jonathan Wang",Devin,158243242,devin-ai-integration[bot],closed,2025-06-12T13:11:51Z,2025-06-14T21:16:42Z,2025-06-14T21:16:42Z,793399480,https://api.github.com/repos/openvm-org/openvm,https://github.com/openvm-org/openvm/pull/1731,"analysisWe need to classify as performance or non-performance. The PR is about feature gating to reduce compile times and binary size. That is performance improvement. Keywords: compile times, binary size, optional dependencies. So it's performance. So output 'performance'.assistantfinalperformance",Performance
-3119420084,33,Add GPU shader plugins and adaptive capture improvements,"## Summary
-- support GPU-powered plugins via `createWebGLProcessor`
-- expose adaptive resolution range flags in the CLI
-- show capture metrics in VR HUD and remote pages
-- add sample invert shader plugin
-- update docs and tests for new CLI options
-
-## Testing
-- `npm test`
-
-------
-https://chatgpt.com/codex/tasks/task_e_68402244f90083288d96066790094c14",OpenAI_Codex,843228,imgntn,closed,2025-06-04T23:57:32Z,2025-06-04T23:58:23Z,2025-06-04T23:58:23Z,76519330,https://api.github.com/repos/imgntn/j360,https://github.com/imgntn/j360/pull/33,"analysisWe need to classify whether the primary purpose is performance. The PR adds GPU shader plugins and adaptive capture improvements. It mentions GPU-powered plugins, adaptive resolution range flags, capture metrics. This seems performance-related: GPU shaders can improve performance, adaptive capture improvements likely performance. So classify as 'performance'.assistantfinalperformance",Performance
 3170129720,2778,Add tail call optimization in VM,"## Summary
 - optimize tail calls in `runtime/vm` by reusing the current frame when a call is immediately returned
 - add regression test using a tail-recursive `sum` function
@@ -5231,16 +4597,6 @@ https://chatgpt.com/codex/tasks/task_e_6857c93d15bc832bba3fea1d195f0443",OpenAI_
 
 ------
 https://chatgpt.com/codex/tasks/task_e_686168e980b88320b0be529f35127990",OpenAI_Codex,1218621,tamnd,closed,2025-06-29T16:35:09Z,2025-06-29T16:35:34Z,2025-06-29T16:35:34Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3993,"analysisWe need to classify as performance or non-performance. The PR title: ""Run job dataset update and improve VM peephole"". Body: ""regenerate JOB dataset IR using runtime/vm, optimize VM peephole pass to remove Move before Return"". This is about optimizing VM peephole pass, removing unnecessary Move before Return. That is a performance optimization. So classification: performance.assistantfinalperformance",Performance
-3146857680,143,Switch DeepEquals stack to ArrayDeque,"## Summary
-- switch stack in `deepEquals` and `deepHashCode` from `LinkedList` to `ArrayDeque`
-- update imports
-- add helper to insert collections into stack
-
-## Testing
-- `mvn -q test` *(fails: `mvn` not found)*
-
-------
-https://chatgpt.com/codex/tasks/task_b_684dfa8f5374832a98fa248a2db0ddf5",OpenAI_Codex,5373774,jdereg,closed,2025-06-14T22:48:02Z,2025-06-14T22:48:25Z,2025-06-14T22:48:25Z,12670630,https://api.github.com/repos/jdereg/java-util,https://github.com/jdereg/java-util/pull/143,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Switch DeepEquals stack to ArrayDeque"". Summary: switch stack in deepEquals and deepHashCode from LinkedList to ArrayDeque, update imports, add helper to insert collections into stack. This is about using ArrayDeque instead of LinkedList. That likely improves performance because ArrayDeque is more efficient for stack operations. So it's a performance improvement. So classification: 'performance'.assistantfinalperformance",Performance
 3216660550,3147,ci: cache docs sandbox build,"## Summary
 - avoid repeated installs by installing docs deps first
 - cache sandbox Docker build layers with buildx
@@ -5588,20 +4944,6 @@ graph TB
 - **Risk Level**: 🟡 Medium - Audio processing changes are complex and require live testing to fully validate
 - **Follow-up**: Consider implementing more sophisticated audio buffering if minimal gaps still occur after this fix
 ",Devin,158243242,devin-ai-integration[bot],closed,2025-07-06T20:51:24Z,2025-07-06T21:15:34Z,,846923721,https://api.github.com/repos/bolna-ai/bolna,https://github.com/bolna-ai/bolna/pull/221,"analysisWe need to classify as performance or non-performance. The PR addresses audio gaps, synchronization, reduced sleep delay, context switching optimization. The key changes: reduced sleep delay from 0.2s to 0.01s, which is a performance improvement. Also optimization of context switching. The title: ""Fix cartesia audio gaps and improve continuity"". The description mentions ""Reduced processing delays"" and ""Optimized context switching"". This is performance improvement. So classification: performance.assistantfinalperformance",Performance
-3183832117,3872,Add register coalescing,"## Summary
-- implement register coalescing pass
-- integrate it in Optimize
-- test register coalescing
-- rename pass to `coalesceRegisters`
-
-## Testing
-- `go vet ./...`
-- `go test ./...`
-
-Codex couldn't run certain commands due to environment limitations. Consider configuring a setup script or internet access in your Codex environment to install dependencies.
-
-------
-https://chatgpt.com/codex/tasks/task_e_685ebb524f7c83208f136ac3fa2cce32",OpenAI_Codex,1218621,tamnd,closed,2025-06-27T19:06:13Z,2025-06-29T16:25:53Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3872,"analysisWe need to classify whether the primary purpose is performance. The PR adds register coalescing pass, which is an optimization to reduce register usage, likely improving performance. Register coalescing is a compiler optimization to reduce register spills, thus improving performance. So it's performance.assistantfinalperformance",Performance
 3209660072,5177,feat(talis): add configurable workers flag for concurrent operations,"## Summary
 
 Adds a global `--workers` flag to all Talis commands that perform concurrent operations, allowing users with powerful machines and fast internet connections to fully utilize their processing power and bandwidth.
@@ -5767,16 +5109,6 @@ This PR focuses on enhancing the `metaMaskWallet` connector by integrating the M
 > ✨ Ask PR-Codex anything about this PR by commenting with `/codex {your question}`
 
 <!-- end pr-codex -->",OpenAI_Codex,4412473,DanielSinclair,closed,2025-06-05T05:14:00Z,2025-06-18T05:20:41Z,2025-06-18T05:20:41Z,392610935,https://api.github.com/repos/rainbow-me/rainbowkit,https://github.com/rainbow-me/rainbowkit/pull/2425,"analysisWe need to classify as performance or non-performance. The PR title: ""feat: metamask sdk connector"". Summary: restore MetaMask connector id, keep QR code logic, update tests. PR-Codex overview: enhancing metaMaskWallet connector by integrating MetaMask SDK for improved connection reliability and performance on mobile devices. It mentions improved connection reliability and performance on mobile devices. But is it performance? The description says ""improved connection reliability and performance"". But does it mention performance optimization? It says ""improved connection reliability and performance on mobile devices."" That could be considered performance improvement. But the keywords: performance, speed, etc. The description mentions ""performance"" explicitly. So likely it's performance. But we need to decide if primary purpose is performance. The PR is about integrating MetaMask SDK to improve connection reliability and performance. That seems performance-related. So classify as 'performance'.assistantfinalperformance",Performance
-3238396793,9165,Improve Dart compiler code emission,"## Summary
-- avoid emitting unused `_equal` helper in Dart output
-- conditionally call `_equal` when comparing lists or maps
-
-## Testing
-- `go test ./compiler/x/dart -tags slow -count=1`
-- `go test ./compiler/x/dart -tags slow -run VMValid -count=1`
-
-------
-https://chatgpt.com/codex/tasks/task_e_68789dee023c8320a29b78551deb4e18",OpenAI_Codex,1218621,tamnd,closed,2025-07-17T07:03:20Z,2025-07-17T07:03:39Z,2025-07-17T07:03:38Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/9165,"analysisWe need to classify as performance or non-performance. The PR title: ""Improve Dart compiler code emission"". Summary: avoid emitting unused `_equal` helper in Dart output; conditionally call `_equal` when comparing lists or maps. This is about code emission, removing unused helper, making code more efficient. It's about performance? It reduces code size, maybe improves runtime performance by not calling unused helper. It's a compiler optimization. The description: avoid emitting unused helper, conditionally call when needed. That is a performance improvement. So classify as 'performance'.assistantfinalperformance",NonPerformance
 2914424485,1051,fix: improve deploy history performance and code quality,"# Fix: Improve Deploy History Performance and Code Quality
 
 Closes #1014
@@ -5956,22 +5288,6 @@ https://chatgpt.com/codex/tasks/task_e_687c7e75ce7c8320bb66ad6a23777359",OpenAI_
 
 ------
 https://chatgpt.com/codex/tasks/task_e_6879b65a24cc832090f470206870dc82",OpenAI_Codex,1218621,tamnd,closed,2025-07-18T03:11:18Z,2025-07-18T03:11:29Z,2025-07-18T03:11:29Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/9435,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""Update Clojure compiler"". Body: ""avoid emitting `_cast_struct` and `_cast_struct_list` when the value already matches the target type"" and ""document the optimization in TASKS"". This is about compiler optimization: avoid emitting unnecessary casts. That is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
-3240006620,7598,Change default hotstuff-min-timeout for collection nodes to 1s,"Collection Node timeout default value is set fairly high at 1.5s, compared to SN timeout value which is 1.045s. This results in offline nodes having a higher impact on finalization rate. See discussion here: https://flow-foundation.slack.com/archives/CUU2KQL4A/p1752765506504069?thread_ts=1752691934.415779&cid=CUU2KQL4A
-
-",Devin,158243242,devin-ai-integration[bot],closed,2025-07-17T15:28:36Z,2025-07-17T21:03:27Z,2025-07-17T21:03:27Z,297778512,https://api.github.com/repos/onflow/flow-go,https://github.com/onflow/flow-go/pull/7598,"analysisWe need to classify as performance or non-performance. The PR title: ""Change default hotstuff-min-timeout for collection nodes to 1s"". Body: explains that default timeout is high, causing offline nodes to impact finalization rate. It's about adjusting timeout to improve performance? The timeout is a parameter affecting finalization rate. It's about performance? The change is to reduce timeout to improve finalization rate. That is a performance improvement. The keywords: ""timeout"", ""impact on finalization rate"", ""offline nodes"". It's about performance. So classify as 'performance'.assistantfinalperformance",NonPerformance
-3196710615,424,Make trigger ignore heartbeat updates,"## Summary
-- avoid notifications when only housekeeping columns change
-- drop & recreate trigger during upgrades so it monitors fewer columns
-
-## Testing
-- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv run ruff check .`
-- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv run mypy .`
-- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv sync --all-extras --frozen`
-- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv run pytest -v`
-
-
-------
-https://chatgpt.com/codex/tasks/task_e_6865017952cc832d89972f6a67d038cd",OpenAI_Codex,16663421,janbjorge,closed,2025-07-02T17:46:15Z,2025-07-03T21:50:16Z,,788904329,https://api.github.com/repos/janbjorge/pgqueuer,https://github.com/janbjorge/pgqueuer/pull/424,"analysisWe need to classify whether the primary purpose is performance improvement. The PR title: ""Make trigger ignore heartbeat updates"". Summary: avoid notifications when only housekeeping columns change; drop & recreate trigger during upgrades so it monitors fewer columns. This is about reducing notifications, likely performance improvement? It's about ignoring heartbeat updates to reduce unnecessary notifications, which could improve performance by reducing load. But is it performance? The keywords: ""performance"" not present. But the description: ""avoid notifications when only housekeeping columns change"" - that reduces overhead. It's a performance improvement. The guidelines: performance-related PR may contain keywords like latency, optimization, slow, etc. But not required; we can still classify as performance if the primary purpose is to improve performance. This PR is about reducing notifications, which is a performance improvement. So classify as 'performance'.assistantfinalperformance",NonPerformance
 3188803096,4233,Update VM const reuse and refresh TPC‑DS IR,"## Summary
 - reuse constant registers when building grouped records in the VM compiler
 - refresh TPC-DS IR disassembly for queries q60–q69
@@ -6282,3 +5598,687 @@ https://chatgpt.com/codex/tasks/task_e_686d806863bc8328b534b61897ca9794",OpenAI_
 
 ------
 https://chatgpt.com/codex/tasks/task_e_6861673a3c788320a30d44672464ff34",OpenAI_Codex,1218621,tamnd,closed,2025-06-29T16:36:41Z,2025-07-01T12:01:53Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3994,"analysisWe need to classify as performance or non-performance. The PR title: ""Optimize group by algorithm"". Summary: add needItems tracking to VM compiler to omit storing group items when unused; detect aggregate usage via new helpers; conditionally accumulate group items only when required. This is about optimization, reducing memory usage, maybe performance. Keywords: optimize, omit storing, conditionally accumulate. It's about performance improvement. So classification: performance.assistantfinalperformance",Performance
+3119420084,33,Add GPU shader plugins and adaptive capture improvements,"## Summary
+- support GPU-powered plugins via `createWebGLProcessor`
+- expose adaptive resolution range flags in the CLI
+- show capture metrics in VR HUD and remote pages
+- add sample invert shader plugin
+- update docs and tests for new CLI options
+
+## Testing
+- `npm test`
+
+------
+https://chatgpt.com/codex/tasks/task_e_68402244f90083288d96066790094c14",OpenAI_Codex,843228,imgntn,closed,2025-06-04T23:57:32Z,2025-06-04T23:58:23Z,2025-06-04T23:58:23Z,76519330,https://api.github.com/repos/imgntn/j360,https://github.com/imgntn/j360/pull/33,"analysisWe need to classify whether the primary purpose is performance. The PR adds GPU shader plugins and adaptive capture improvements. It mentions GPU-powered plugins, adaptive resolution range flags, capture metrics. This seems performance-related: GPU shaders can improve performance, adaptive capture improvements likely performance. So classify as 'performance'.assistantfinalperformance",Performance
+3238396793,9165,Improve Dart compiler code emission,"## Summary
+- avoid emitting unused `_equal` helper in Dart output
+- conditionally call `_equal` when comparing lists or maps
+
+## Testing
+- `go test ./compiler/x/dart -tags slow -count=1`
+- `go test ./compiler/x/dart -tags slow -run VMValid -count=1`
+
+------
+https://chatgpt.com/codex/tasks/task_e_68789dee023c8320a29b78551deb4e18",OpenAI_Codex,1218621,tamnd,closed,2025-07-17T07:03:20Z,2025-07-17T07:03:39Z,2025-07-17T07:03:38Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/9165,"analysisWe need to classify as performance or non-performance. The PR title: ""Improve Dart compiler code emission"". Summary: avoid emitting unused `_equal` helper in Dart output; conditionally call `_equal` when comparing lists or maps. This is about code emission, removing unused helper, making code more efficient. It's about performance? It reduces code size, maybe improves runtime performance by not calling unused helper. It's a compiler optimization. The description: avoid emitting unused helper, conditionally call when needed. That is a performance improvement. So classify as 'performance'.assistantfinalperformance",NonPerformance
+3186381329,4002,Optimize outer join in VM,"## Summary
+- implement compileHashOuterJoin for hashed full outer join
+- wire outer join optimization into compileJoinQuery
+- document benchmark update for outer joins
+- regenerate `outer_join.ir.out`
+
+## Testing
+- `go build ./...`
+
+------
+https://chatgpt.com/codex/tasks/task_e_6861722f141883208bff79fcb7c95f04",OpenAI_Codex,1218621,tamnd,closed,2025-06-29T17:25:32Z,2025-06-29T17:26:25Z,2025-06-29T17:26:25Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/4002,"analysisWe need to classify as performance or non-performance. The PR title: ""Optimize outer join in VM"". Summary: implement compileHashOuterJoin for hashed full outer join, wire outer join optimization into compileJoinQuery, document benchmark update for outer joins, regenerate outer_join.ir.out. This is about optimizing outer join, likely performance improvement. Keywords: optimize, performance, compileHashOuterJoin, benchmark update. So classification: performance.assistantfinalperformance",Performance
+3208672912,718,Add realtime events for agent typing and reply broadcasting,"
+# Address PR feedback: use channel helper, implement throttle, move typing trigger
+
+## Summary
+
+This PR addresses three specific GitHub comments from binary-koan on the realtime events implementation:
+
+1. **Channel Helper Function**: Added `conversationRealtimeChannelId` helper function to `lib/realtime/channels.ts` and updated all 4 locations using the `conversation-${slug}` pattern to use this centralized helper.
+
+2. **Throttle vs Debounce**: Changed typing event logic from debounce (8s delay before sending) to throttle (send immediately, then block subsequent sends for 8s). Implemented using timestamp tracking instead of setTimeout for better performance.
+
+3. **TipTap Editor Integration**: Moved typing event trigger from `updateDraftedEmail` to TipTap editor's `onUpdate` callback, ensuring typing events trigger on actual editor changes rather than any draft updates.
+
+## Review & Testing Checklist for Human
+
+⚠️ **High Risk - Requires Thorough Testing** (5 items)
+
+- [ ] **End-to-end realtime functionality**: Test that typing events are broadcast immediately on first keypress in dashboard and typing indicators appear in widget, then verify 8-second throttle blocking works correctly
+- [ ] **TipTap editor integration**: Verify typing events trigger on actual editor key presses and not on programmatic content changes or other draft updates
+- [ ] **Event scoping**: Test with multiple conversations open to ensure events are properly scoped to conversation slugs and don't leak between different conversations
+- [ ] **Throttle edge cases**: Test rapid typing, network interruptions, and tab switching to ensure throttle logic handles edge cases correctly
+- [ ] **No regressions**: Verify existing reply event broadcasting and 10-second timeout functionality still works correctly
+
+**Recommended Test Plan:**
+1. Open dashboard conversation view and corresponding widget side-by-side
+2. Type in dashboard - verify typing indicator appears immediately in widget
+3. Continue typing rapidly - verify no additional typing events sent for 8 seconds
+4. Test with multiple conversations to ensure proper event isolation
+5. Verify reply events and existing functionality still work
+
+---
+
+### Diagram
+
+```mermaid
+%%{ init : { ""theme"" : ""default"" }}%%
+graph TD
+    Dashboard[""app/(dashboard)/mailboxes/[mailbox_slug]/[category]/conversation/messageActions.tsx<br/>Dashboard Conversation""]:::major-edit
+    Widget[""components/widget/Conversation.tsx<br/>Chat Widget""]:::minor-edit
+    Channels[""lib/realtime/channels.ts<br/>Channel Helper""]:::major-edit
+    TipTap[""components/tiptap/editor.tsx<br/>TipTap Editor""]:::context
+    Supabase[""Supabase Realtime<br/>Channel System""]:::context
+
+    Dashboard -->|""uses""| Channels
+    Widget -->|""uses""| Channels
+    Dashboard -->|""onUpdate callback""| TipTap
+    Dashboard -->|""throttled broadcast""| Supabase
+    Supabase -->|""listen events""| Widget
+
+    subgraph Legend
+        L1[Major Edit]:::major-edit
+        L2[Minor Edit]:::minor-edit
+        L3[Context/No Edit]:::context
+    end
+
+    classDef major-edit fill:#90EE90
+    classDef minor-edit fill:#87CEEB
+    classDef context fill:#FFFFFF
+```
+
+### Notes
+
+- **Environment Issues**: Local development environment had persistent Docker PostgreSQL setup timeout issues, preventing end-to-end testing of the realtime functionality. This significantly increases the risk of bugs.
+- **Merge Conflicts**: Had to resolve complex merge conflicts during rebase, which required careful preservation of both autofix changes and new implementations.
+- **Throttle Implementation**: Uses `Date.now()` timestamp comparison instead of setTimeout for more reliable throttle behavior across browser tabs and network conditions.
+- **Channel Naming**: The helper function centralizes the `conversation-${slug}` pattern used across 4 different locations in the codebase.
+
+**Link to Devin run**: https://app.devin.ai/sessions/29c331cda1144d649eb058a1416a13ad  
+**Requested by**: reason.koan@gmail.com
+",Devin,158243242,devin-ai-integration[bot],closed,2025-07-07T11:40:25Z,2025-07-09T23:59:42Z,2025-07-09T23:59:42Z,941289933,https://api.github.com/repos/antiwork/helper,https://github.com/antiwork/helper/pull/718,"analysisWe need to classify whether the primary purpose of the pull request is to improve performance. The PR is about adding realtime events for agent typing and reply broadcasting. It addresses channel helper, throttle vs debounce, and editor integration. The changes include switching from debounce to throttle, using timestamp tracking instead of setTimeout for better performance. That is a performance improvement: throttle vs debounce, timestamp tracking. Also mention ""better performance"". The PR is about realtime events, but the main change is throttle logic to reduce network traffic, which is a performance improvement. The classification: 'performance'.
+
+Check if any other aspects: The PR is about adding realtime events, but the main change is throttle vs debounce. That is a performance improvement. So classification: performance.assistantfinalperformance",Performance
+3070780242,673,Fix ReleaseRef build step,avoid building the whole solution for ReleaseRef,OpenAI_Codex,853584,pardeike,closed,2025-05-17T13:33:57Z,2025-05-17T14:11:03Z,2025-05-17T14:11:03Z,78002587,https://api.github.com/repos/pardeike/Harmony,https://github.com/pardeike/Harmony/pull/673,"analysisWe need to classify whether the primary purpose is to improve performance. The PR title: ""Fix ReleaseRef build step avoid building the whole solution for ReleaseRef"". Body not provided. The title indicates it's about build step, avoiding building whole solution for ReleaseRef. That is about build performance? It might be about build speed, but the description says ""avoid building the whole solution for ReleaseRef"". That is a build optimization, likely to reduce build time. That is performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
+3225389334,353,Implement chunked bucket ConcurrentList,"## Summary
+- rewrite `ConcurrentList` to use chunked atomic buckets
+- document the new approach in the user guide
+- note the change in `changelog.md`
+
+## Testing
+- ❌ `mvn -q -Dtest=*ConcurrentTest* test` *(failed: mvn not installed)*
+
+------
+https://chatgpt.com/codex/tasks/task_b_687266251fa4832aaa60efb70188caf7",OpenAI_Codex,5373774,jdereg,closed,2025-07-12T13:54:39Z,2025-07-12T13:54:50Z,2025-07-12T13:54:50Z,12670630,https://api.github.com/repos/jdereg/java-util,https://github.com/jdereg/java-util/pull/353,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Implement chunked bucket ConcurrentList"". Summary: rewrite ConcurrentList to use chunked atomic buckets, document new approach, note change in changelog. This seems like a performance improvement: using chunked atomic buckets likely improves concurrency/performance. The description mentions performance? It doesn't explicitly mention performance, but the change is about rewriting to use chunked atomic buckets, which is likely a performance improvement. The guidelines: performance-related PRs may contain keywords like optimization, speed, etc. This PR doesn't contain those keywords. But the content indicates a rewrite for performance. The guidelines say ""Performance-related pull requests may contain keywords such as memory, optimization, leak, speed, perf, stuck, lag, fast, respons, slow, latency, performance, latenc, hang, tim, throughput, compile-time-hog, instant, responsive, react, perform, wait, minor, or any other terms referring to how faster and efficiently software runs."" The PR doesn't contain those keywords. But the content is about rewriting to use chunked atomic buckets, which is likely a performance improvement. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The guidelines: if it contains those keywords, classify as performance. If not, maybe non-performance. But the content indicates a performance improvement. The guidelines say ""Performance-related pull requests may contain keywords such as... or any other terms referring to how faster and efficiently software runs."" It doesn't say that if it doesn't contain those keywords, it's non-performance. But the guidelines are for classification. The PR is about rewriting to use chunked atomic buckets, which is likely a performance improvement. But the guidelines mention that performance-related PRs may contain keywords. It doesn't say that if they don't contain keywords, they are not performance. But the guidelines are for classification. We need to decide. The PR is about concurrency and chunked atomic buckets, which likely improves performance. So we should classify as 'performance'. The guidelines: ""Performance-related pull requests may contain keywords such as memory, optimization, leak, speed, perf, stuck, lag, fast, respons, slow, latency, performance, latenc, hang, tim, throughput, compile-time-hog, instant, responsive, react, perform, wait, minor, or any other terms referring to how faster and efficiently software runs."" The PR doesn't contain those keywords. But the content is about rewriting to use chunked atomic buckets. That is a performance improvement. The guidelines are not strict; they say ""may contain keywords"". So it's possible to classify as performance even if not containing keywords. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The PR is about rewriting to use chunked atomic buckets, which is likely a performance improvement. So classification: performance.assistantfinalperformance",NonPerformance
+2986072834,202,Add customizable PostgreSQL connection pool settings,"- Create explicit connection pool with configurable settings
+- Use settings for min_size, max_size, and max_idle
+- Update documentation with examples
+- Add to README feature list
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+Co-Authored-By: Claude <noreply@anthropic.com>",Claude_Code,8251002,JoshuaC215,closed,2025-04-10T15:28:26Z,2025-04-11T05:02:46Z,2025-04-11T05:02:46Z,838093526,https://api.github.com/repos/JoshuaC215/agent-service-toolkit,https://github.com/JoshuaC215/agent-service-toolkit/pull/202,"analysisWe need to classify whether the primary purpose is performance. The PR adds customizable PostgreSQL connection pool settings: min_size, max_size, max_idle. This is about connection pooling, which can affect performance. But is the primary purpose performance? It is about adding configuration for connection pool, which can improve performance by tuning. The description: ""Add customizable PostgreSQL connection pool settings"" - that is about performance tuning. The keywords: ""performance"" not explicitly present, but ""connection pool"" is a performance optimization. The instruction says performance-related PR may contain keywords such as latency, optimization, slow, react, wait, memory, speed, responsive, minor, tim, instant, latenc, leak, lag, respons, stuck, perf, compile-time-hog, fast, hang, throughput, performance, perform, or any other terms referring to how faster and efficiently software runs. The PR does not contain those keywords, but the content is about connection pool settings, which is a performance improvement. The question: ""determine whether the primary purpose of the pull request is to improve performance."" The PR is about adding customizable connection pool settings. That is a performance improvement. So classify as 'performance'.
+
+Thus answer: performance.assistantfinalperformance",Performance
+3216682526,6920,Lua compiler improvements,"## Summary
+- make the Lua compiler inline append operations when a list literal is given
+- regenerate Lua machine outputs with updated compiler
+
+## Testing
+- `go test -tags slow ./compiler/x/lua -run TestLuaCompiler_ValidPrograms -count=1`
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_686ea73dc9208320b8742e6cc573b62c",OpenAI_Codex,1218621,tamnd,closed,2025-07-09T17:41:35Z,2025-07-09T17:41:48Z,2025-07-09T17:41:47Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/6920,"analysisWe need to classify as performance or non-performance. The PR title: ""Lua compiler improvements"". Summary: ""make the Lua compiler inline append operations when a list literal is given"" and ""regenerate Lua machine outputs with updated compiler"". This seems like a compiler improvement, but is it performance? Inlining append operations could improve performance of generated code. But the description is about compiler changes, not runtime performance. However, the improvement is about making the compiler inline append operations, which could reduce runtime overhead. That is a performance improvement. But the question: ""primary purpose of the pull request is to improve performance."" The PR is about compiler improvements, but the change is to inline append operations, which likely improves runtime performance. The summary also mentions ""regenerate Lua machine outputs with updated compiler"". That is more about updating outputs. The main change is inlining append operations. That is a performance optimization. So classify as 'performance'.
+
+Thus answer: performance.assistantfinalperformance",Performance
+3225673491,8163,Fix slow build scripts tests,"## Summary
+- mark `compile_tpch_go.go` as slow
+- add a small `doc.go` so the scripts package has buildable source
+
+## Testing
+- `go test ./scripts`
+- `go test ./...`
+
+------
+https://chatgpt.com/codex/tasks/task_e_6872acd4009c83208ca84d6c41cc902f",OpenAI_Codex,1218621,tamnd,closed,2025-07-12T18:52:20Z,2025-07-12T18:52:32Z,2025-07-12T18:52:32Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/8163,"analysisWe need to classify as performance or non-performance. The PR title: ""Fix slow build scripts tests"". Summary: mark compile_tpch_go.go as slow, add doc.go so scripts package has buildable source. This is about build scripts tests, marking a file as slow. It's about test performance? The description: ""Fix slow build scripts tests"". That indicates performance improvement. The keywords: slow, performance. So classification: performance.assistantfinalperformance",Performance
+3184492040,3879,Add peephole optimizations to VM,"## Summary
+- add peephole optimizer to remove redundant instructions and simplify arithmetic
+- document optimization pass in `runtime/vm` README
+
+## Testing
+- `go vet ./...`
+- `go test ./...`
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_685f5b33ff8483209f5c4718156d409f",OpenAI_Codex,1218621,tamnd,closed,2025-06-28T03:08:50Z,2025-06-30T03:19:28Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3879,"analysisWe need to classify as performance or non-performance. The PR title: ""Add peephole optimizations to VM"". Summary: add peephole optimizer to remove redundant instructions and simplify arithmetic. This is a performance improvement. So classification: performance.assistantfinalperformance",Performance
+3171897266,2551,[alpha_factory] Async PolicyAgent tools,"## Summary
+- audit PolicyAgent methods
+- convert I/O heavy operations to async
+
+## Testing
+- `python scripts/check_python_deps.py`
+- `python check_env.py --auto-install`
+- `pytest -q` *(fails: 44 errors)*
+- `pre-commit run --files alpha_factory_v1/backend/agents/policy_agent.py` *(fails: proto-verify, verify-requirements-lock)*
+
+------
+https://chatgpt.com/codex/tasks/task_e_685a9c9c37c48333a7a0d6a45cf0d330",OpenAI_Codex,24208299,MontrealAI,closed,2025-06-24T12:52:53Z,2025-06-24T12:54:48Z,2025-06-24T12:54:48Z,922805069,https://api.github.com/repos/MontrealAI/AGI-Alpha-Agent-v0,https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2551,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""[alpha_factory] Async PolicyAgent tools"". Summary: audit PolicyAgent methods, convert I/O heavy operations to async. That is about making I/O heavy operations async, which can improve performance by not blocking. But is the primary purpose performance? It is about async conversion, which is about performance improvement. The description mentions ""convert I/O heavy operations to async"". That is performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
+3222837614,7790,Add tailrec detection for Kotlin compiler,"## Summary
+- detect simple tail recursion in Kotlin compiler and emit `tailrec`
+- update Kotlin machine README progress and tasks
+
+## Testing
+- `go vet ./...`
+- `go test ./compiler/x/kotlin -tags slow`
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_687107680470832093d43b142321e900",OpenAI_Codex,1218621,tamnd,closed,2025-07-11T12:59:03Z,2025-07-11T12:59:14Z,2025-07-11T12:59:14Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/7790,"analysisWe need to classify whether the primary purpose of the PR is to improve performance. The PR adds tailrec detection for Kotlin compiler. That is a compiler optimization to detect tail recursion and emit tailrec. This is a performance improvement? Tail recursion optimization can improve performance by eliminating recursion overhead, but it's more about correctness and optimization. The description: ""detect simple tail recursion in Kotlin compiler and emit `tailrec`"". That is a compiler optimization. It might improve performance by enabling tail recursion elimination. But is the primary purpose performance? It could be correctness or language feature. But tailrec is a language feature that allows the compiler to optimize recursion. The PR is about adding detection and emitting tailrec. That is a performance optimization. The guidelines: performance-related PRs may contain keywords like optimization, speed, etc. This PR mentions ""tailrec detection"" which is an optimization. So likely performance. The classification: 'performance'.assistantfinalperformance",Performance
+3078518733,9,Add FastMCP server,"## Summary
+- add `run_fastmcp.py` for running DeepSearchAgents via FastMCP
+- document running the new MCP server in README
+
+## Testing
+- `make test` *(fails: No route to host)*",OpenAI_Codex,11715013,lwyBZss8924d,open,2025-05-21T00:28:08Z,,,966679215,https://api.github.com/repos/lwyBZss8924d/DeepSearchAgents,https://github.com/lwyBZss8924d/DeepSearchAgents/pull/9,"analysisWe need to classify whether the primary purpose is performance. The PR adds a FastMCP server, presumably for performance. The title: ""Add FastMCP server"". The summary: add run_fastmcp.py for running DeepSearchAgents via FastMCP, document running the new MCP server in README. No mention of performance, but FastMCP likely stands for ""Fast Multi-Client Protocol"" or something. The PR is about adding a new server, maybe for performance. But the classification is based on keywords. The description doesn't contain performance keywords. But the title ""Add FastMCP server"" might imply performance. However, the instruction says performance-related PRs may contain keywords such as latency, optimization, slow, react, wait, memory, speed, responsive, minor, tim, instant, latenc, leak, lag, respons, stuck, perf, compile-time-hog, fast, hang, throughput, performance, perform, or any other terms referring to how faster and efficiently software runs. The word ""Fast"" is present. But ""Fast"" is a keyword. So it might be considered performance. But is ""Fast"" enough? The instruction says ""or any other terms referring to how faster and efficiently software runs."" ""Fast"" is a term. So likely performance. But we need to decide. The PR is adding a new server, maybe for performance. The title ""Add FastMCP server"" includes ""Fast"". That might be a performance improvement. But the body doesn't mention performance. But the presence of ""Fast"" might be enough. The guidelines: ""Performance-related pull requests may contain keywords such as... fast..."". So yes, ""fast"" is a keyword. So classify as performance.assistantfinalperformance",Performance
+3261682254,12844,Add CS benchmark mode and update Rosetta,"## Summary
+- add benchmark block option to CS transpiler
+- capture durations and memory in Rosetta tests
+- skip MOCHI_NOW_SEED when benchmarking
+- parse JSON results from the output
+- regenerate code/output for `100-doors-2`
+
+## Testing
+- `MOCHI_ROSETTA_INDEX=1 MOCHI_BENCHMARK=1 go test -tags slow ./transpiler/x/cs -run Rosetta -count=1 -v`
+
+------
+https://chatgpt.com/codex/tasks/task_e_6882dc5bbf748320816593903b0c59e5",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T01:32:25Z,2025-07-25T01:32:39Z,2025-07-25T01:32:39Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12844,"analysisWe need to classify as performance or non-performance. The PR adds CS benchmark mode, captures durations and memory, skip seed, parse JSON results, regenerate code. This is about benchmarking, measuring performance. So it's performance.assistantfinalperformance",Performance
+3151769530,282,Fix unsupported conversion caching,"## Summary
+- cache missing conversions inside `Converter.convert`
+- document caching behavior in `changelog.md`
+
+## Testing
+- `mvn -q test` *(fails: mvn not found)*
+
+------
+https://chatgpt.com/codex/tasks/task_b_6850c71728cc832a94d5dc3ec0829fc8",OpenAI_Codex,5373774,jdereg,closed,2025-06-17T01:41:48Z,2025-06-17T01:41:57Z,2025-06-17T01:41:57Z,12670630,https://api.github.com/repos/jdereg/java-util,https://github.com/jdereg/java-util/pull/282,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Fix unsupported conversion caching"". Summary: ""cache missing conversions inside Converter.convert - document caching behavior in changelog.md"". This is about caching missing conversions. That is a performance improvement? Caching can improve performance by avoiding repeated work. But the description says ""Fix unsupported conversion caching"". It might be about caching missing conversions to avoid repeated errors? The change is about caching missing conversions inside Converter.convert. That likely improves performance by caching missing conversions to avoid repeated expensive operations. But is it primarily performance? It might be a bug fix: caching missing conversions to avoid repeated errors. But caching is a performance improvement. The description: ""cache missing conversions inside Converter.convert"". That is a performance improvement. The PR is about caching missing conversions. That is a performance improvement. So classify as 'performance'.
+
+Check if any other context: The PR is about caching missing conversions. That is a performance improvement. So answer: performance.assistantfinalperformance",Performance
+3111305843,1453,[alpha_factory] add gzip size test,"## Summary
+- check gzip size of `dist/app.js` in the Insight browser demo
+
+## Testing
+- `pytest -q alpha_factory_v1/demos/alpha_agi_insight_v1/insight_browser_v1/tests/test_bundle_size.py`
+- `pytest -q` *(fails: ValueError: Duplicated timeseries in CollectorRegistry)*
+
+------
+https://chatgpt.com/codex/tasks/task_e_683df5435f008333932fe0ecb6f1d9f8",OpenAI_Codex,24208299,MontrealAI,closed,2025-06-02T19:07:10Z,2025-06-02T19:07:18Z,2025-06-02T19:07:18Z,922805069,https://api.github.com/repos/MontrealAI/AGI-Alpha-Agent-v0,https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1453,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""[alpha_factory] add gzip size test"". Summary: check gzip size of dist/app.js in the Insight browser demo. It's about testing gzip size, which is a performance metric. The body mentions test failures. It's about measuring size, which is performance. So classify as 'performance'.assistantfinalperformance",NonPerformance
+3140239245,1731,feat: Add feature gating for halo2 imports in SDK and CLI crates,"## Feature Gating for Halo2 Imports - INT-4112
+
+This PR implements feature gating for all halo2 imports in the openvm-sdk and openvm-cli crates, making EVM proving/verification capabilities optional. This allows users who only need STARK functionality to compile without pulling in halo2 dependencies, improving compile times and reducing binary size.
+
+### Changes Made
+
+#### SDK Dependencies (crates/sdk/Cargo.toml)
+- Made `snark-verifier` and `snark-verifier-sdk` optional dependencies
+- Removed forced `static-verifier` feature from `openvm-native-recursion`
+- Updated `evm-prove` feature definition to properly include halo2 dependencies:
+  - `openvm-native-recursion/evm-prove`
+  - `openvm-native-recursion/static-verifier`
+  - `dep:snark-verifier`
+  - `dep:snark-verifier-sdk`
+
+#### Feature Gating in SDK Source Files
+- **lib.rs**: Added `#[cfg(any(feature = ""evm-prove"", feature = ""evm-verify""))]` to `agg_keygen` function
+- **keygen/mod.rs**: Feature-gated `Halo2ProvingKey` struct and related imports, added conditional compilation to `AggProvingKey.halo2_pk` field
+- **keygen/static_verifier.rs**: Feature-gated entire module with halo2-related functionality
+- **types.rs**: Added feature gates to all EVM-related types (`EvmHalo2Verifier`, `EvmProof`, etc.)
+- **fs.rs**: Feature-gated halo2 file I/O functions and imports
+
+#### CLI Updates (crates/cli/Cargo.toml)
+- Removed `evm-verify` from default features
+- Default features now: `[""parallel"", ""jemalloc"", ""bench-metrics""]`
+
+#### CLI Source Updates (crates/cli/src/util.rs)
+- Feature-gated `read_agg_halo2_pk_from_file` import
+- Feature-gated `read_default_agg_pk()` function
+
+### Verification
+
+All compilation scenarios have been tested and pass successfully:
+
+**SDK Crate:**
+- ✅ `cargo check --no-default-features` (STARK-only compilation)
+- ✅ `cargo check --features evm-prove` (EVM proving enabled)
+- ✅ `cargo check --features evm-verify` (EVM verification enabled)
+
+**CLI Crate:**
+- ✅ `cargo check --no-default-features` (STARK-only compilation)  
+- ✅ `cargo check --features evm-verify` (EVM verification enabled)
+
+### Impact
+
+- **STARK-only users**: Can now compile without halo2 dependencies, resulting in faster compile times and smaller binaries
+- **EVM users**: No breaking changes - existing functionality remains available when EVM features are enabled
+- **Backward compatibility**: Maintained through proper feature flag design
+
+### Link to Devin run
+https://app.devin.ai/sessions/8bb6a0cf896e4b98972d872fffcb68bd
+
+**Requested by:** Jonathan Wang",Devin,158243242,devin-ai-integration[bot],closed,2025-06-12T13:11:51Z,2025-06-14T21:16:42Z,2025-06-14T21:16:42Z,793399480,https://api.github.com/repos/openvm-org/openvm,https://github.com/openvm-org/openvm/pull/1731,"analysisWe need to classify as performance or non-performance. The PR is about feature gating to reduce compile times and binary size. That is performance improvement. Keywords: compile times, binary size, optional dependencies. So it's performance. So output 'performance'.assistantfinalperformance",Performance
+3261752051,12881,Add Python benchmark wrapper,"## Summary
+- update Python transpiler to wrap programs without a main function in a benchmark block
+- record memory usage via `resource.getrusage`
+- update rosetta progress table to use check mark status and show benchmark stats
+- regenerate `100-doors-2` Python output with benchmark info
+
+## Testing
+- `MOCHI_ROSETTA_INDEX=1 MOCHI_BENCHMARK=true go test -tags=slow -run TestPyTranspiler_Rosetta_Golden/001 -update-rosetta-py -count=1`
+- `python3 tests/rosetta/transpiler/Python/100-doors-2.py > tests/rosetta/transpiler/Python/100-doors-2.bench`
+
+------
+https://chatgpt.com/codex/tasks/task_e_6882e402dff88320839a16af24da66cd",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T02:14:35Z,2025-07-25T02:14:49Z,2025-07-25T02:14:49Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12881,"analysisWe need to classify as performance or non-performance. The PR adds a Python benchmark wrapper, records memory usage, updates progress table, regenerates output with benchmark info. This is about benchmarking, measuring performance, memory usage. So it's performance. The classification: 'performance'.assistantfinalperformance",Performance
+3126110678,829,k8s(resources): tune workloads and add pedrobot db,"## Summary
+- tune CPU & memory requests across infrastructure and apps
+- document resource profiles
+- add MongoDB StatefulSet for pedrobot
+
+## Testing
+- `yamllint -c .yamllint.yml <files>` *(warnings about document start and comments)*
+- `kustomize build --enable-helm k8s/applications/web/pedrobot`
+- `kustomize build --enable-helm k8s/applications/web/babybuddy`
+- `kustomize build --enable-helm k8s/applications/tools/whoami`
+- `kustomize build --enable-helm k8s/applications/tools/unrar`
+- `kustomize build --enable-helm k8s/applications/tools/it-tools`
+- `kustomize build --enable-helm k8s/applications/network/omada`
+- `kustomize build --enable-helm k8s/applications/media/whisperasr`
+- `kustomize build --enable-helm k8s/applications/media/sabnzbd`
+- `kustomize build --enable-helm k8s/applications/media/jellyseerr`
+- `kustomize build --enable-helm k8s/applications/media/jellyfin`
+- `kustomize build --enable-helm k8s/applications/media/immich/immich-server`
+- `kustomize build --enable-helm k8s/applications/media/immich/immich-ml`
+- `kustomize build --enable-helm k8s/applications/automation/mqtt`
+- `kustomize build --enable-helm k8s/applications/ai/karakeep`
+- `kustomize build --enable-helm k8s/applications/ai/openwebui`
+- `kustomize build --enable-helm k8s/infrastructure/controllers/argocd` *(failed: helm repo inaccessible)*
+- `kustomize build --enable-helm k8s/applications/media/immich/immich-redis` *(failed: helm repo inaccessible)*
+- `kustomize build --enable-helm k8s/infrastructure/storage/longhorn` *(failed: helm repo inaccessible)*
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_68437705b0848322ab44b13fcb63a27c",OpenAI_Codex,39008574,theepicsaxguy,closed,2025-06-06T23:38:47Z,2025-06-06T23:53:29Z,2025-06-06T23:53:29Z,933720213,https://api.github.com/repos/theepicsaxguy/homelab,https://github.com/theepicsaxguy/homelab/pull/829,"analysisWe need to classify as performance or non-performance. The PR title: ""k8s(resources): tune workloads and add pedrobot db"". Summary: tune CPU & memory requests across infrastructure and apps, document resource profiles, add MongoDB StatefulSet for pedrobot. This is about resource tuning, which is performance optimization. It may be considered performance. The keywords: tune, CPU & memory requests, resource profiles. That is performance. So classification: performance.assistantfinalperformance",Performance
+3196341284,423,Add drain benchmark strategy,,OpenAI_Codex,16663421,janbjorge,closed,2025-07-02T15:38:33Z,2025-07-03T12:04:57Z,2025-07-03T12:04:57Z,788904329,https://api.github.com/repos/janbjorge/pgqueuer,https://github.com/janbjorge/pgqueuer/pull/423,"analysisWe need to classify the PR as performance or non-performance. The title: ""Add drain benchmark strategy"". Body not provided. The title suggests adding a benchmark strategy for drain. Could be performance? ""drain benchmark strategy"" might be about measuring performance of draining operations. But could also be about adding a strategy for draining something, maybe a queue. Without body, we guess. The phrase ""benchmark"" indicates performance measurement. So likely performance. So classify as 'performance'.assistantfinalperformance",Performance
+3261724373,12865,Add benchmark mode to scheme transpiler,"## Summary
+- support benchmarking in the Scheme transpiler
+- update Scheme rosetta tests to handle benchmark mode
+- update golden output with benchmark data
+
+## Testing
+- `MOCHI_ROSETTA_INDEX=1 MOCHI_BENCHMARK=1 go test -tags=slow ./transpiler/x/scheme -run Rosetta -count=1`
+
+------
+https://chatgpt.com/codex/tasks/task_e_6882de5ac9b8832097347de04ffae021",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T01:58:29Z,2025-07-25T01:58:48Z,2025-07-25T01:58:48Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12865,"analysisWe need to classify as performance or non-performance. The PR adds benchmark mode to scheme transpiler, updates tests, golden output with benchmark data. This is about benchmarking, performance measurement. The primary purpose is to add benchmark mode, which is performance-related. So classify as 'performance'.assistantfinalperformance",Performance
+3112822851,27,Add viewer and adaptive resolution,"## Summary
+- add a simple WebRTC `viewer.html`
+- document remote viewer and adaptive mode in README
+- implement adaptive resolution toggle in `j360.ts`
+- expose `toggleAdaptive` in type declarations
+- support `--adaptive` option in CLI
+- update CLI and encoder tests
+- provide test stubs for TypeScript and ffmpeg
+
+## Testing
+- `npm test`
+
+------
+https://chatgpt.com/codex/tasks/task_e_683e862c544c8328adca501270226361",OpenAI_Codex,843228,imgntn,closed,2025-06-03T07:38:24Z,2025-06-03T07:39:25Z,2025-06-03T07:39:25Z,76519330,https://api.github.com/repos/imgntn/j360,https://github.com/imgntn/j360/pull/27,"analysisWe need to classify whether the primary purpose is performance improvement. The PR adds viewer and adaptive resolution, implements adaptive resolution toggle, support CLI option, update tests. The focus is on adaptive resolution, which is about performance? Adaptive resolution toggling can improve performance by reducing resolution to improve speed. But is the primary purpose performance? The PR adds viewer and adaptive resolution, but the main change is adding adaptive resolution toggle. That is a performance improvement feature. The description: ""implement adaptive resolution toggle in j360.ts"" and ""support --adaptive option in CLI"". Adaptive resolution is about performance. So likely performance. The guidelines: performance-related PR may contain keywords like performance, speed, etc. The title: ""Add viewer and adaptive resolution"". The body: ""implement adaptive resolution toggle"". That is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
+3240006620,7598,Change default hotstuff-min-timeout for collection nodes to 1s,"Collection Node timeout default value is set fairly high at 1.5s, compared to SN timeout value which is 1.045s. This results in offline nodes having a higher impact on finalization rate. See discussion here: https://flow-foundation.slack.com/archives/CUU2KQL4A/p1752765506504069?thread_ts=1752691934.415779&cid=CUU2KQL4A
+
+",Devin,158243242,devin-ai-integration[bot],closed,2025-07-17T15:28:36Z,2025-07-17T21:03:27Z,2025-07-17T21:03:27Z,297778512,https://api.github.com/repos/onflow/flow-go,https://github.com/onflow/flow-go/pull/7598,"analysisWe need to classify as performance or non-performance. The PR title: ""Change default hotstuff-min-timeout for collection nodes to 1s"". Body: explains that default timeout is high, causing offline nodes to impact finalization rate. It's about adjusting timeout to improve performance? The timeout is a parameter affecting finalization rate. It's about performance? The change is to reduce timeout to improve finalization rate. That is a performance improvement. The keywords: ""timeout"", ""impact on finalization rate"", ""offline nodes"". It's about performance. So classify as 'performance'.assistantfinalperformance",Performance
+3125799000,628,test: box rebuild performance test,"## Summary
+- add performance benchmark for rebuilding a `Box` with style overrides
+
+## Testing
+- `flutter test packages/mix/test/bechmarks/widget_build_test.dart` *(fails: `flutter` not found)*
+
+------
+https://chatgpt.com/codex/tasks/task_e_684318723bac832bbc92ef8e817e5301",OpenAI_Codex,62367544,tilucasoli,closed,2025-06-06T20:28:54Z,2025-06-06T20:35:53Z,,378459401,https://api.github.com/repos/btwld/mix,https://github.com/btwld/mix/pull/628,"analysisWe need to classify as performance or non-performance. The PR title: ""test: box rebuild performance test"". Summary: add performance benchmark for rebuilding a Box with style overrides. So it's about performance benchmark. So classification: performance.assistantfinalperformance",Performance
+3169971812,2758,Add CFG inference to VM,"## Summary
+- add a new `infer.go` implementing type inference across the bytecode CFG
+- rewrite arithmetic/comparison ops based on inferred register types
+- run the inference optimisation step after compilation
+- update golden IR outputs for optimised opcodes
+
+## Testing
+- `go test ./tests/vm`
+
+------
+https://chatgpt.com/codex/tasks/task_e_685a04eb49e08320b2c7df3d7966ea88",OpenAI_Codex,1218621,tamnd,closed,2025-06-24T02:03:10Z,2025-06-24T04:08:15Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2758,"analysisWe need to classify whether the primary purpose is performance. The PR adds CFG inference to VM, rewrites arithmetic/comparison ops based on inferred register types, runs inference optimization step after compilation, updates golden IR outputs for optimised opcodes. This seems to be about optimization, improving performance. Keywords: optimization, inference, rewrite ops, run inference optimization step. So it's performance. So label 'performance'.assistantfinalperformance",Performance
+3238869981,984,"[WIP] Streaming still not working. Causing slow responses for something like 'write a report' #981
+Open
+@mzazakeith
+Description
+mzazakeith
+opened 3 hours ago
+Description
+With the latest version of PraisonAI. straming is still not real time. When in verbose mo...","Thanks for asking me to work on this. I will get started on it and keep this PR's description up to date as I form a plan and make progress.
+
+Original description:
+
+> Streaming still not working. Causing slow responses for something like 'write a report' #981
+> Open
+> @mzazakeith
+> Description
+> mzazakeith
+> opened 3 hours ago
+> Description
+> With the latest version of PraisonAI. straming is still not real time. When in verbose mode you can see the internal logs of the tool streaming the output. But as a use the final output we get is an accumulation of the internal streams.
+> 
+> Environment
+> Provider (select one):
+> 
+> Anthropic
+> 
+> OpenAI
+> 
+> Google Vertex AI
+> 
+> AWS Bedrock
+> 
+> Other:
+> PraisonAI version: latest
+> Operating System:
+> Full Code
+> from praisonaiagents import Agent
+> 
+> agent = Agent(
+>     instructions=""You are a helpful assistant"",
+>     llm=""gemini/gemini-2.0-flash"",
+>     self_reflect=False,
+>     verbose=False,
+>     stream=True
+> )
+> 
+> for chunk in agent.start(""Write a report on about the history of the world""):
+>     print(chunk, end="""", flush=True) 
+> or
+> 
+> from praisonaiagents import Agent
+> 
+> agent = Agent(
+>     instructions=""You are a helpful assistant"",
+>     llm=""gemini/gemini-2.0-flash"",
+>     self_reflect=False,
+>     verbose=True,
+>     stream=True
+> )
+> 
+> result = agent.start(""Write a report on about the history of the world"")
+> print(result)
+> Steps to Reproduce
+> intall the lib
+> copy the code above
+> run them and observe
+> Expected Behavior
+> Instead of streaming the internal response that the user does not see we should stream realtime to the user so as to avoid unnecessary latency and improve user experience
+> 
+> Actual Behavior
+> Streaming happens internally we do not get the stream in the final response.
+> 
+> Activity
+> 
+> mzazakeith
+> added 
+> bug
+> Something isn't working
+>  3 hours ago
+> MervinPraison
+> MervinPraison commented 37 minutes ago
+> MervinPraison
+> 37 minutes ago
+> Owner
+> @claude review this issue and do a detailed analysis and fix this if the existing code doesn't have the solution implemented. Making sure it has backward compatibility, no existing features removed. After making those changes, again review the applied changes. Use @web to search if you dont know any information or to find the latest documentation or to find the latest version. Run the code if you think you need to run it to test it. Minimal code change to start with if required any changes. Please create a PR using gh tool with your changes.
+> 
+> MervinPraison
+> MervinPraison commented 32 minutes ago
+> MervinPraison
+> 32 minutes ago
+> Owner
+> @claude make this to work
+> 
+> from praisonaiagents import Agent
+> 
+> agent = Agent(
+>     instructions=""You are a helpful assistant"",
+>     llm=""gemini/gemini-2.0-flash"",
+>     self_reflect=False,
+>     verbose=False,
+>     stream=True
+> )
+> 
+> for chunk in agent.start(""Write a report on about the history of the world""):
+>     print(chunk, end="""", flush=True)
+
+
+
+<!-- START COPILOT CODING AGENT TIPS -->
+---
+
+💡 You can make Copilot smarter by setting up custom instructions, customizing its development environment and configuring Model Context Protocol (MCP) servers. Learn more [Copilot coding agent tips](https://gh.io/copilot-coding-agent-tips) in the docs.",Copilot,198982749,Copilot,closed,2025-07-17T09:37:55Z,2025-07-24T00:55:54Z,,774497032,https://api.github.com/repos/MervinPraison/PraisonAI,https://github.com/MervinPraison/PraisonAI/pull/984,"analysisWe need to classify whether the primary purpose of the PR is to improve performance. The PR title: ""[WIP] Streaming still not working. Causing slow responses for something like 'write a report' #981"". The description mentions streaming not real time, causing slow responses. The issue is about streaming and latency. The PR likely addresses performance by improving streaming to reduce latency. The keywords: slow, streaming, latency, performance. So it's performance. So label 'performance'.assistantfinalperformance",NonPerformance
+3183832117,3872,Add register coalescing,"## Summary
+- implement register coalescing pass
+- integrate it in Optimize
+- test register coalescing
+- rename pass to `coalesceRegisters`
+
+## Testing
+- `go vet ./...`
+- `go test ./...`
+
+Codex couldn't run certain commands due to environment limitations. Consider configuring a setup script or internet access in your Codex environment to install dependencies.
+
+------
+https://chatgpt.com/codex/tasks/task_e_685ebb524f7c83208f136ac3fa2cce32",OpenAI_Codex,1218621,tamnd,closed,2025-06-27T19:06:13Z,2025-06-29T16:25:53Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3872,"analysisWe need to classify whether the primary purpose is performance. The PR adds register coalescing pass, which is an optimization to reduce register usage, likely improving performance. Register coalescing is a compiler optimization to reduce register spills, thus improving performance. So it's performance.assistantfinalperformance",Performance
+3187833970,981,feat: add support for plain TXT files,"
+# Add TXT file support with line-by-line splitting for fastlane metadata
+
+## Summary
+
+Implements TXT file support in the Lingo.dev CLI loader system to handle fastlane metadata translation workflows. The key innovation is **line-by-line splitting** - instead of treating the entire file as a single translatable unit, each line becomes a separate translatable unit with numeric keys (""1"", ""2"", ""3"", etc.).
+
+This approach solves the chunking problem for large TXT files since the SDK can now chunk at the line level rather than being forced to send massive single strings to the LLM.
+
+**Key Changes:**
+- Added `txt` to supported bucket types in formats specification
+- Created new TXT loader that splits content by lines into 1-indexed numeric keys
+- Integrated TXT loader into the main loader factory with standard composition pattern
+- Empty lines are handled automatically by the unlocalizable loader (filtered during pull, restored during push)
+- Added comprehensive test suite covering load/save, empty files, and empty line handling
+
+## Review & Testing Checklist for Human
+
+- [ ] **Test with real fastlane metadata files** - Verify line-by-line behavior works correctly with actual metadata content, not just synthetic test cases
+- [ ] **Verify empty line handling in practice** - Test files with various empty line patterns to ensure the unlocalizable loader approach works reliably
+- [ ] **Confirm chunking solves the original problem** - Test that large TXT files now chunk properly at the line level and don't overwhelm LLM token limits
+- [ ] **Check edge cases** - Test files with only empty lines, very large files, mixed content patterns, and single-line files
+
+**Recommended test plan:** Create sample fastlane metadata TXT files with various patterns (normal lines, empty lines, large content) and run through the full translation workflow to verify line structure preservation and chunking behavior.
+
+---
+
+### Diagram
+
+```mermaid
+%%{ init : { ""theme"" : ""default"" }}%%
+graph TD
+    subgraph Legend
+        L1[""Major Edit""]:::major-edit
+        L2[""Minor Edit""]:::minor-edit  
+        L3[""Context/No Edit""]:::context
+    end
+
+    spec[""packages/spec/src/formats.ts<br/>+txt bucket type""]:::minor-edit
+    indexLoader[""packages/cli/src/cli/loaders/index.ts<br/>+txt case""]:::minor-edit
+    txtLoader[""packages/cli/src/cli/loaders/txt.ts<br/>NEW FILE""]:::major-edit
+    tests[""packages/cli/src/cli/loaders/index.spec.ts<br/>+txt tests""]:::major-edit
+    
+    textFileLoader[""createTextFileLoader""]:::context
+    syncLoader[""createSyncLoader""]:::context
+    unlocalizableLoader[""createUnlocalizableLoader""]:::context
+    
+    spec --> indexLoader
+    indexLoader --> txtLoader
+    txtLoader --> textFileLoader
+    textFileLoader --> syncLoader
+    syncLoader --> unlocalizableLoader
+    
+    tests -.-> txtLoader
+    
+    classDef major-edit fill:#90EE90
+    classDef minor-edit fill:#87CEEB  
+    classDef context fill:#FFFFFF
+```
+
+### Notes
+
+- **Empty line handling evolution**: Initially implemented space placeholder workaround, then simplified to rely on unlocalizable loader's automatic empty string filtering/restoration. The current approach is cleaner but less explicit.
+- **Loader composition pattern**: Uses the same 4-loader composition as other file types (text-file → txt → sync → unlocalizable), ensuring consistency with existing patterns.
+- **1-indexed keys**: Follows SRT loader convention with numeric keys starting from ""1"" rather than ""0"".
+- **Session details**: Requested by @mathio, implemented in Devin session https://app.devin.ai/sessions/581a22c71ce44db8adaff265fb5d1c6d
+",Devin,158243242,devin-ai-integration[bot],closed,2025-06-30T09:42:27Z,2025-07-01T08:43:01Z,2025-07-01T08:43:01Z,771479895,https://api.github.com/repos/lingodotdev/lingo.dev,https://github.com/lingodotdev/lingo.dev/pull/981,"analysisWe need to classify as performance or non-performance. The PR adds support for plain TXT files, with line-by-line splitting to solve chunking problem for large TXT files. The key innovation is line-by-line splitting to avoid sending massive single strings to LLM. This is about chunking, which is about performance (avoiding large token usage). The description mentions ""chunking solves the original problem"" and ""large TXT files now chunk properly at the line level and don't overwhelm LLM token limits"". This is a performance improvement. So classification: performance.assistantfinalperformance",Performance
+3146857680,143,Switch DeepEquals stack to ArrayDeque,"## Summary
+- switch stack in `deepEquals` and `deepHashCode` from `LinkedList` to `ArrayDeque`
+- update imports
+- add helper to insert collections into stack
+
+## Testing
+- `mvn -q test` *(fails: `mvn` not found)*
+
+------
+https://chatgpt.com/codex/tasks/task_b_684dfa8f5374832a98fa248a2db0ddf5",OpenAI_Codex,5373774,jdereg,closed,2025-06-14T22:48:02Z,2025-06-14T22:48:25Z,2025-06-14T22:48:25Z,12670630,https://api.github.com/repos/jdereg/java-util,https://github.com/jdereg/java-util/pull/143,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Switch DeepEquals stack to ArrayDeque"". Summary: switch stack in deepEquals and deepHashCode from LinkedList to ArrayDeque, update imports, add helper to insert collections into stack. This is about using ArrayDeque instead of LinkedList. That likely improves performance because ArrayDeque is more efficient for stack operations. So it's a performance improvement. So classification: 'performance'.assistantfinalperformance",Performance
+3098901968,19979,Fix net server noDelay handling,"## Summary
+- add Node.js test `test-net-server-nodelay`
+- call `Socket.setNoDelay()` when server `noDelay` option is enabled
+
+## Testing
+- `bun bd --silent node:test test-net-server-nodelay` *(fails: missing webkit build files)*",OpenAI_Codex,709451,Jarred-Sumner,closed,2025-05-29T01:22:52Z,2025-05-29T05:14:57Z,,357728969,https://api.github.com/repos/oven-sh/bun,https://github.com/oven-sh/bun/pull/19979,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""Fix net server noDelay handling"". Body: adds test, calls Socket.setNoDelay() when server noDelay option is enabled. This is about network performance? Setting noDelay disables Nagle's algorithm, improving latency. It's a performance improvement. The keywords: noDelay, Socket.setNoDelay, network. It's about performance. So classify as 'performance'.assistantfinalperformance",Performance
+3170126845,2776,Enable constant folding of pure functions in VM,"## Summary
+- support compile-time evaluation of pure functions in the VM compiler
+- register functions in the type environment so they can be folded
+- store constant values from `let` statements for later folding
+- update IR golden files for folded calls
+
+## Testing
+- `go test ./tests/vm -run TestVM_IR -count=1`
+- `go test ./...`
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_685a1abe71b0832097a30b7c27808534",OpenAI_Codex,1218621,tamnd,closed,2025-06-24T03:42:50Z,2025-06-24T04:09:08Z,,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2776,"analysisWe need to classify as performance or non-performance. The PR title: ""Enable constant folding of pure functions in VM"". Summary: compile-time evaluation of pure functions, register functions, store constant values, update IR golden files. This is about compile-time optimization, constant folding. That is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance
+3261612045,12814,Add memory tracking for bench blocks in C++ transpiler,"## Summary
+- implement `_mem()` helper that returns process memory usage via `getrusage`
+- capture memory before and after `bench` blocks and print the difference
+- enable `UseMem` tracking through the transpiler
+- commit generated `bench_block.cpp`
+
+## Testing
+- `go test -tags slow ./transpiler/x/cpp -run TestCPPTranspiler_VMValid_Golden/bench_block -count=1`
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_6882807000348320b142c69603e39e65",OpenAI_Codex,1218621,tamnd,closed,2025-07-25T00:51:34Z,2025-07-25T00:51:48Z,2025-07-25T00:51:48Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/12814,"analysisWe need to classify as performance or non-performance. The PR adds memory tracking for bench blocks, capturing memory before and after, printing difference. This is about memory usage, performance. So classification: performance.assistantfinalperformance",Performance
+3114659416,1500,[alpha_factory] inline wasm assets,"## Summary
+- inline `pyodide.asm.wasm` and `wasm-gpt2.tar` during manual build
+- decode embedded WASM in runtime loader
+- test that `window.PYODIDE_WASM_BASE64` exists in the built UI
+
+## Testing
+- `python check_env.py --auto-install`
+- `pytest -q` *(fails: ValueError: Duplicated timeseries in CollectorRegistry)*
+- `pytest tests/test_wasm_base64.py -q`
+
+------
+https://chatgpt.com/codex/tasks/task_e_683f210c617c8333933deaf6d9902bf9",OpenAI_Codex,24208299,MontrealAI,closed,2025-06-03T16:27:50Z,2025-06-03T16:27:57Z,2025-06-03T16:27:57Z,922805069,https://api.github.com/repos/MontrealAI/AGI-Alpha-Agent-v0,https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1500,"analysisWe need to classify as performance or non-performance. The PR title: ""[alpha_factory] inline wasm assets"". Summary: inline wasm assets, decode embedded WASM in runtime loader, test that window.PYODIDE_WASM_BASE64 exists. This is about bundling wasm assets inline, likely to reduce network requests, improve load performance. But is the primary purpose to improve performance? It seems to inline wasm assets to reduce load time, but the main goal is to embed assets. That is a performance improvement. The keywords: ""inline"" might reduce network latency. But the description doesn't explicitly mention performance. However, the action of inlining assets is a performance optimization. The classification: performance.assistantfinalperformance",Performance
+3177404139,3321,Switch MCP server to VM runtime,"## Summary
+- use `runtime/vm` instead of the interpreter when MCP executes source code
+
+## Testing
+- `go test ./...`
+
+------
+https://chatgpt.com/codex/tasks/task_e_685c9f81300883208f1983dbc49b04c0",OpenAI_Codex,1218621,tamnd,closed,2025-06-26T01:22:20Z,2025-06-26T01:23:37Z,2025-06-26T01:23:37Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/3321,"analysisWe need to classify whether the primary purpose is performance. The PR title: ""Switch MCP server to VM runtime"". Summary: use runtime/vm instead of interpreter when MCP executes source code. This likely improves performance by using VM runtime instead of interpreter. So it's performance. No other context. So classification: performance.assistantfinalperformance",NonPerformance
+3170148477,2781,Implement folding of pure calls in VM,"## Summary
+- fold pure function calls during VM compilation
+- store constant let bindings in the compiler environment
+- update golden IR outputs to reflect constant folding
+
+## Testing
+- `go test ./...`
+
+------
+https://chatgpt.com/codex/tasks/task_e_685a1f658ca08320955b305d838bb813",OpenAI_Codex,1218621,tamnd,closed,2025-06-24T03:54:17Z,2025-06-24T03:54:28Z,2025-06-24T03:54:28Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2781,"analysisWe need to classify the pull request as performance or non-performance. The PR title: ""Implement folding of pure calls in VM"". Summary: fold pure function calls during VM compilation, store constant let bindings in compiler environment, update golden IR outputs to reflect constant folding. This is about constant folding, which is an optimization. It improves performance by reducing runtime overhead. So it's a performance-related PR. So classification: 'performance'.assistantfinalperformance",Performance
+3168819278,2736,Regenerate benchmarks and adjust Go label,"## Summary
+- rerun benchmarks and update BENCHMARK.md
+- regenerate benchmark output files
+- rename Go benchmark label to `Mochi (Go)`
+
+## Testing
+- `go test ./types`
+- `go run ./cmd/mochi-bench > /tmp/bench.log`
+
+------
+https://chatgpt.com/codex/tasks/task_e_68598306e0948320be0f9896b90076ec",OpenAI_Codex,1218621,tamnd,closed,2025-06-23T16:47:41Z,2025-06-23T16:47:57Z,2025-06-23T16:47:57Z,985853139,https://api.github.com/repos/mochilang/mochi,https://github.com/mochilang/mochi/pull/2736,"analysisWe need to classify as performance or non-performance. The PR title: ""Regenerate benchmarks and adjust Go label"". Summary: rerun benchmarks and update BENCHMARK.md, regenerate benchmark output files, rename Go benchmark label. This is about benchmarks, performance. So classification: performance.assistantfinalperformance",Performance
+3129475228,1947,Convert RecentsSection from Client to Server Component,"# Convert RecentsSection from Client to Server Component
+
+## Summary
+Converted the `RecentsSection` component from a Client Component to a Server Component by removing client-side data fetching and replacing it with server-side data fetching using `await`.
+
+## Changes Made
+- **Removed `'use client'` directive** from both `RecentsSection.tsx` and `fetchRecentSessions.ts`
+- **Updated `fetchRecentSessions` service** to use server-side Supabase client (`@/libs/db/server`)
+- **Replaced client-side hooks** (`useEffect`, `useState`) with server-side data fetching
+- **Modified `GlobalNav` component** to fetch recent sessions data and pass as props to `RecentsSection`
+- **Removed loading state logic** as server components don't need client-side loading states
+
+## Technical Details
+- `fetchRecentSessions` now uses `await createClient()` for server-side database access
+- `GlobalNav` is now an async function that fetches data before rendering
+- `RecentsSection` receives sessions data via props instead of fetching client-side
+- Authentication context is properly handled server-side through Supabase server client
+
+## Files Modified
+- `frontend/apps/app/components/CommonLayout/GlobalNav/services/fetchRecentSessions.ts`
+- `frontend/apps/app/components/CommonLayout/GlobalNav/RecentsSection/RecentsSection.tsx`
+- `frontend/apps/app/components/CommonLayout/GlobalNav/GlobalNav.tsx`
+
+## Testing
+- ✅ Build passes (`pnpm build`)
+- ✅ Linting passes (biome, TypeScript, ESLint)
+- ✅ No TypeScript compilation errors
+
+## Link to Devin run
+https://app.devin.ai/sessions/ca08a6cc7b484ec683ad4105c9198769
+
+## Requested by
+hirotaka.miyagi@route06.co.jp
+",Devin,158243242,devin-ai-integration[bot],closed,2025-06-09T07:43:48Z,2025-06-09T11:32:31Z,2025-06-09T11:32:31Z,839216423,https://api.github.com/repos/liam-hq/liam,https://github.com/liam-hq/liam/pull/1947,"analysisWe need to classify whether the primary purpose of the pull request is to improve performance. The PR is converting RecentsSection from Client to Server Component. This is about moving data fetching to server side, removing client side hooks, etc. This is likely a performance improvement: server components reduce client bundle size, reduce client-side rendering, etc. The description mentions ""removed client-side data fetching and replaced it with server-side data fetching using await."" That is a performance improvement. The keywords: ""performance"" is not explicitly mentioned, but the change is about server components, which is a performance improvement. The instruction says performance-related PRs may contain keywords such as memory, optimization, leak, speed, perf, stuck, lag, fast, respons, slow, latency, performance, latenc, hang, tim, throughput, compile-time-hog, instant, responsive, react, perform, wait, minor, or any other terms referring to how faster and efficiently software runs. The PR description does not contain those keywords, but the change is about performance. The instruction says ""Performance-related pull requests may contain keywords such as... or any other terms referring to how faster and efficiently software runs."" It doesn't say that the presence of keywords is required. It says ""may contain keywords"" but not that they must. The classification is based on the primary purpose. The primary purpose is to convert RecentsSection from Client to Server Component, which is a performance improvement. So classify as 'performance'.
+
+Thus answer: performance.assistantfinalperformance",NonPerformance
+3212315483,672,Add speed index to models,Still need to feed the model values with relevant ones,Cursor,8428699,yannbu,closed,2025-07-08T12:16:04Z,2025-07-09T15:07:00Z,2025-07-09T15:07:00Z,899127822,https://api.github.com/repos/WorkflowAI/WorkflowAI,https://github.com/WorkflowAI/WorkflowAI/pull/672,"analysisWe need to classify whether the primary purpose is performance. The title: ""Add speed index to models"". Body: ""Still need to feed the model values with relevant ones"". The title mentions ""speed index"" which could be a metric for performance. But the body says ""Still need to feed the model values with relevant ones"". That seems like adding a new field to models, maybe for performance metrics. The question: is the primary purpose to improve performance? The phrase ""speed index"" suggests a performance metric. But is the PR adding a new field to store speed index? That could be for performance measurement, but not necessarily improving performance. The instruction: performance-related PRs may contain keywords such as memory, optimization, leak, speed, perf, etc. The title contains ""speed index"". That is a keyword. So likely performance. The body doesn't mention improvement, but the title is enough. So classify as 'performance'.assistantfinalperformance",NonPerformance
+3196710615,424,Make trigger ignore heartbeat updates,"## Summary
+- avoid notifications when only housekeeping columns change
+- drop & recreate trigger during upgrades so it monitors fewer columns
+
+## Testing
+- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv run ruff check .`
+- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv run mypy .`
+- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv sync --all-extras --frozen`
+- `PGUSER=pgquser PGDATABASE=pgqdb PGPASSWORD=pgqpw PGHOST=localhost PGPORT=5432 uv run pytest -v`
+
+
+------
+https://chatgpt.com/codex/tasks/task_e_6865017952cc832d89972f6a67d038cd",OpenAI_Codex,16663421,janbjorge,closed,2025-07-02T17:46:15Z,2025-07-03T21:50:16Z,,788904329,https://api.github.com/repos/janbjorge/pgqueuer,https://github.com/janbjorge/pgqueuer/pull/424,"analysisWe need to classify whether the primary purpose is performance improvement. The PR title: ""Make trigger ignore heartbeat updates"". Summary: avoid notifications when only housekeeping columns change; drop & recreate trigger during upgrades so it monitors fewer columns. This is about reducing notifications, likely performance improvement? It's about ignoring heartbeat updates to reduce unnecessary notifications, which could improve performance by reducing load. But is it performance? The keywords: ""performance"" not present. But the description: ""avoid notifications when only housekeeping columns change"" - that reduces overhead. It's a performance improvement. The guidelines: performance-related PR may contain keywords like latency, optimization, slow, etc. But not required; we can still classify as performance if the primary purpose is to improve performance. This PR is about reducing notifications, which is a performance improvement. So classify as 'performance'.assistantfinalperformance",Performance

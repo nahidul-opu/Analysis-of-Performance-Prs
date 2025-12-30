@@ -1,6 +1,6 @@
 | Topic                            |   Count | Keywords                                                                                                                                         |
 |:---------------------------------|--------:|:-------------------------------------------------------------------------------------------------------------------------------------------------|
-| Unknown                          |     101 | ['uv', 'pip', 'calendar', 'unified', 'booking', 'slot', 'image', 'revalidation', 'controls', 'team']                                             |
+| Outliers                          |     101 | ['uv', 'pip', 'calendar', 'unified', 'booking', 'slot', 'image', 'revalidation', 'controls', 'team']                                             |
 | CI/CD                            |      96 | ['workflow', 'jobs', 'job', 'ci', 'cache', 'docker', 'minutes', 'builds', 'github', 'build']                                                     |
 | Transpiler Benchmarking          |      56 | ['rosetta', 'transpiler', 'benchmark', 'benchmark mode', 'slow', 'bench', 'mode', 'regenerate', 'update', 'progress']                            |
 | Rendering and Data Loading       |      51 | ['hydration', 'species', 'component', 'children', 'nodes', 'adapter', 'theme', 'keys', 'badges', 'tree']                                         |

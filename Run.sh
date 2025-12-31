@@ -21,7 +21,7 @@ module load StdEnv/2023 cuda/12.2
 module load python/3.12
 
 cd <path>
-source venv/msr/bin/activate
+source venv/v/bin/activate
 
 export PYTORCH_ALLOC_CONF=expandable_segments:True
 export HF_TOKEN=<token>
@@ -30,6 +30,6 @@ export HF_HOME=$SLURM_TMPDIR/hf_cache
 mkdir -p $HF_HOME
 
 
-cd MSR-MiningChallenge26
+cd repo
 srun python filter.py
 echo "Job finished at $(date)"
